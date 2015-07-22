@@ -1,0 +1,6 @@
+1. Visit http://github.com and signup
+2. Install git at local PC
+   - Recommend Source Tree : http://www.sourcetreeapp.com/
+   - Other Tortois Git or Wingit or original commandline git is fine 
+3. https://github.com/infomat/CS_Proj.git
+4. 
