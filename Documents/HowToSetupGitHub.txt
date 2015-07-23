@@ -3,4 +3,8 @@
    - Recommend Source Tree : http://www.sourcetreeapp.com/
    - Other Tortois Git or Wingit or original commandline git is fine 
 3. https://github.com/infomat/CS_Proj.git
-4. 
+4. Workflow : add -> commit -> push
+   Don't forget pull before push (Keep latest source), otherwise some source can conflict with other's uploaded source.
+
+Reference:
+http://rogerdudler.github.io/git-guide/index.html
