@@ -1,0 +1,34 @@
+Project Name : Monopoly Game
+
+
+1. Team : 
+	Hassan Nahhal, Sungjoe Kim, Changho Choi
+2. Topic and scope: 
+	This project is a term project for PROG8140 C# programming course's capstone project.
+	This project is simulating Monopoly game, but it will be customized to finish within two week's project
+
+3. Users: 
+	This software can be used anyone who likes playing monopoly game or wants to learn the game rule.
+        However, due to lack of time, this project will simulate the monopoly game not like real game.
+	In other words, if user enter number of player, it will simulate the game until there's winner.
+
+4. Preliminary Design: Identify objects and describe the custom classes that you would design.
+			Describe the relationship between these classes. Furthermore, describe existing classes that you
+intend to use
+	Need to be filled in
+
+5. Test Plan:
+	Due to lack of time and skills, this software will be tested with pre-defined test cases and check the ouutput for each step and random test.
+	
+5-1 Test cases: (Test Category, Description, Expected result)
+	1. Number of player 
+	- User enter number of player 1, check the output
+        - the output shows the error message
+	2. Number of player 
+	- User enter number of player 9, check the output
+	- the output shows the error message
+	3. Number of player
+	- User enter number of player 2, check the output
+	- the game will start, and shows user's name, rolling result of two dices, and piece movement, and locationof piece.
+
+
