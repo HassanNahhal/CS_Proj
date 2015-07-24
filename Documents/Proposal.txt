@@ -6,6 +6,11 @@ Project Name : Monopoly Game
 2. Topic and scope: 
 	This project is a term project for PROG8140 C# programming course's capstone project.
 	This project is simulating Monopoly game, but it will be customized to finish within two week's project
+	Rule:
+	- Initially, each player has $10,00
+	- Each Player will get $1,000 for each turn
+	- If player decide to buy a squre, he should pay $2,000
+	- If another player place the square whch already bought by another player, he should pay $500
 
 3. Users: 
 	This software can be used anyone who likes playing monopoly game or wants to learn the game rule.
