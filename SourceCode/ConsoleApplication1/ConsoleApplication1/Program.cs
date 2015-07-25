@@ -1,24 +1,28 @@
-﻿/*
- * 
- * 
- * Done by Hassan Nahhal
- * 
- * 
- * 
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace Monopoly
 {
     class Program
     {
         static void Main ( string [] args )
         {
+            int numberOfPlayers;
+
+            Console.WriteLine ( "Welcome to MONOPOLY" );
+            Console.WriteLine ( "please enter the number of players to start the game" );
+            numberOfPlayers = int.Parse ( Console.ReadLine () );
+
+            GameMaster gameMaster = new GameMaster ();
+            gameMaster.MaxNumberOfPlayers = numberOfPlayers;
+
+            Console.WriteLine ( "enter anykey to continue..." );
+            Console.ReadKey ();
+
+
         }
     }
 }
