@@ -26,6 +26,7 @@ namespace Monopoly
         public void DieRoll()
         {
             dieFaceValue = r.Next(maxNumber);
+            dieFaceValue += r.Next(maxNumber);
         }
         
         public int GetRoll()
