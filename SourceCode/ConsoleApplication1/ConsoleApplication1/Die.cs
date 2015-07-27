@@ -14,7 +14,7 @@ namespace Monopoly
 
     class Die
     {
-        public static int maxNumber = 6;
+        private const int maxNumber = 6;
         private int dieFaceValue;
         Random r = new Random();
 
