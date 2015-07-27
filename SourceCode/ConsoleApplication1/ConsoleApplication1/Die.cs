@@ -18,5 +18,15 @@ namespace Monopoly
 {
     class Die
     {
+        Random r = new Random();
+
+        public Die()
+        {  
+        }        
+        
+        public int getRoll()
+        {
+            return r.Next(6);
+        }
     }
 }

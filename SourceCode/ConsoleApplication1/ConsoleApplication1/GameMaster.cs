@@ -73,11 +73,11 @@ namespace Monopoly
         */
 
 
-        public int GetPossition ( Player player )
+        public int GetPosition ( Player player )
         {
-            int possition = 0;
+            int position = 0;
 
-            return possition;
+            return position;
         }
         public Player GetCurrentPlayer ()
         {
