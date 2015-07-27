@@ -20,16 +20,31 @@ namespace Monopoly
 {
     class Player
     {
-        private int money = 0;
-        private string name = "";
-        private int diceNumber = 0;
-        private int latestPosition = 0;
-        private Cell position = new Cell();
-        private Die d = new Die();
+        private int money;
+        private string name;
+        private int diceNumber;
+        private int latestPosition;
+        private Cell position;
+        private Die d;
 
         public Player()
         { 
-            
+            money = 0;
+            name = ";
+            latestPosition = 0;
+            diceNumber = 0;
+            position =  = new Cell();
+            d = new Die();
+        }
+        
+        public Player(int m, string n, Cell p, Die d)
+        {
+            money = m;
+            name = n;
+            latestPosition = 0;
+            diceNumber = 0;
+            position =  = new Cell();
+            d = new Die();
         }
 
         public int LatestPosition
