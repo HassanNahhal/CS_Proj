@@ -20,16 +20,31 @@ namespace Monopoly
 {
     class Player
     {
-        private int money = 0;
-        private string name = "";
-        private int diceNumber = 0;
-        private int latestPosition = 0;
-        private Cell position = new Cell();
-        private Die d = new Die();
-
+        private int money;
+        private string name;
+        private int diceNumber;
+        private int latestPosition;
+        private Cell position;
+        private Die die;
+            
         public Player()
         { 
-            
+            money = 0;
+            name = "";
+            latestPosition = 0;
+            diceNumber = 0;
+            position = new Cell();
+            die = new Die();
+        }
+        
+        public Player(int _money, string _name)
+        {
+            money = _money;
+            name = _name;
+            latestPosition = 0;
+            diceNumber = 0;
+            position =  new Cell();
+            die = new Die();
         }
 
         public int LatestPosition
@@ -90,7 +105,7 @@ namespace Monopoly
             return position.IsAvailable(LatestPosition);            
         }
 
-        //Which class have the value of position? cell or player?
+        //Get the owner of current position, return the Player Class type
         public Player GetPosition()
         {
             return position.GetOwner(LatestPosition);
@@ -101,12 +116,12 @@ namespace Monopoly
             position.SetAvailable(this);
         }
 
+        //Throw the dice and return the number and assign local dicenumber
         public void ThrowDie()
         {
             int dieFace = 0;
 
-            dieFace = d.getRoll();
-            dieFace += d.getRoll();
+            dieFace = die.getRoll();
                
             DiceNumber = dieFace;
         }

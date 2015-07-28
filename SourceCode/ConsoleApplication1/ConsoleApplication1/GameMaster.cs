@@ -22,6 +22,7 @@ namespace Monopoly
         private GameBoard gameBoard;
         private Player [] arrayOfPlayers;
         private int turn;
+        //what does utilDiceRoll do ??
         //private int utilDiceRoll;
 
         /*
@@ -31,6 +32,22 @@ namespace Monopoly
             set;
         }
          */
+
+
+
+        public GameMaster ()
+        {
+        }
+
+
+        public GameMaster ( int maxNumberOfPlayers , Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers , int turn )
+        {
+            this.maxNumberOfPlayers = maxNumberOfPlayers;
+            this.dice = dice;
+            this.gameBoard = gameBoard;
+            this.arrayOfPlayers = arrayOfPlayers;
+            this.turn = turn;
+        }
 
         public int Turn
         {
@@ -62,15 +79,8 @@ namespace Monopoly
             set;
         }
 
-        public GameMaster ()
-        {
-        }
 
-        /*
-        public GameMaster ()
-        {
-        }
-        */
+
 
 
         public int GetPosition ( Player player )

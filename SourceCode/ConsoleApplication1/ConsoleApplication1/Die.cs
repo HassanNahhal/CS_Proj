@@ -1,11 +1,6 @@
 ﻿/*
  * 
- * 
  * Done by SUNG JOE KIM
- * 
- * 
- * 
- * 
  */
 
 using System;
@@ -16,17 +11,30 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
+
     class Die
     {
-        Random r = new Random();
+        private const int maxNumber = 6;
+        private int dieFaceValue;
+        Random random = new Random();
 
         public Die()
-        {  
+        {
+            DieRoll();
         }        
         
-        public int getRoll()
+        //Roll the die twice and assign the total number
+        //into the local dicdeFaceValue variable
+        public void DieRoll()
         {
-            return r.Next(6);
+            dieFaceValue = random.Next(maxNumber);
+            dieFaceValue += random.Next(maxNumber);
+        }
+        
+        public int GetRoll()
+        {
+            return dieFaceValue;
         }
     }
+ 
 }
