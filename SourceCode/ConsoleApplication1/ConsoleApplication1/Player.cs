@@ -105,7 +105,7 @@ namespace Monopoly
             return position.IsAvailable(LatestPosition);            
         }
 
-        //Which class have the value of position? cell or player?
+        //Get the owner of current position, return the Player Class type
         public Player GetPosition()
         {
             return position.GetOwner(LatestPosition);
@@ -116,12 +116,12 @@ namespace Monopoly
             position.SetAvailable(this);
         }
 
+        //Throw the dice and return the number and assign local dicenumber
         public void ThrowDie()
         {
             int dieFace = 0;
 
             dieFace = d.getRoll();
-            dieFace += d.getRoll();
                
             DiceNumber = dieFace;
         }
