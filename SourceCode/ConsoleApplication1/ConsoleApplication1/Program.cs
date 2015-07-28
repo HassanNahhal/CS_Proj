@@ -10,6 +10,7 @@ namespace Monopoly
     {
         static void Main ( string [] args )
         {
+           // this will be static , anyone who wants to test , test below it and add comments 
             int numberOfPlayers;
 
             Console.WriteLine ( "Welcome to MONOPOLY" );
@@ -24,5 +25,7 @@ namespace Monopoly
 
 
         }
+
+
     }
 }
