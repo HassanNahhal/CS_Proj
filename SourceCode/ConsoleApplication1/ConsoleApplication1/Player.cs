@@ -37,7 +37,7 @@ namespace Monopoly
             d = new Die();
         }
         
-        public Player(int _money, string _name, Cell p, Die d)
+        public Player(int _money, string _name)
         {
             money = _money;
             name = _name;
