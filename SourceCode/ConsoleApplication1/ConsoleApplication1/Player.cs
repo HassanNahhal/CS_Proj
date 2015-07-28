@@ -25,7 +25,7 @@ namespace Monopoly
         private int diceNumber;
         private int latestPosition;
         private Cell position;
-        private Die d;
+        private Die die;
 
         public Player()
         { 
@@ -34,7 +34,7 @@ namespace Monopoly
             latestPosition = 0;
             diceNumber = 0;
             position = new Cell();
-            d = new Die();
+            die = new Die();
         }
         
         public Player(int _money, string _name)
@@ -44,7 +44,7 @@ namespace Monopoly
             latestPosition = 0;
             diceNumber = 0;
             position =  new Cell();
-            d = new Die();
+            die = new Die();
         }
 
         public int LatestPosition
