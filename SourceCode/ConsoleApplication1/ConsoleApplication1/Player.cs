@@ -33,7 +33,7 @@ namespace Monopoly
             name = "";
             latestPosition = 0;
             diceNumber = 0;
-            position =  = new Cell();
+            position = new Cell();
             d = new Die();
         }
         
@@ -43,7 +43,7 @@ namespace Monopoly
             name = _name;
             latestPosition = 0;
             diceNumber = 0;
-            position =  = new Cell();
+            position =  new Cell();
             d = new Die();
         }
 
