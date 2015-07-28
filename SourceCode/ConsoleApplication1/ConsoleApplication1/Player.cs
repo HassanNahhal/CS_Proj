@@ -121,7 +121,7 @@ namespace Monopoly
         {
             int dieFace = 0;
 
-            dieFace = d.getRoll();
+            dieFace = die.getRoll();
                
             DiceNumber = dieFace;
         }
