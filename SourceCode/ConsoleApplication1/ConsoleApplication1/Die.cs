@@ -23,6 +23,8 @@ namespace Monopoly
             DieRoll();
         }        
         
+        //Roll the die twice and assign the total number
+        //into the local dicdeFaceValue variable
         public void DieRoll()
         {
             dieFaceValue = r.Next(maxNumber);
