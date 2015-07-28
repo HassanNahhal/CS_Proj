@@ -30,17 +30,17 @@ namespace Monopoly
         public Player()
         { 
             money = 0;
-            name = ";
+            name = "";
             latestPosition = 0;
             diceNumber = 0;
             position =  = new Cell();
             d = new Die();
         }
         
-        public Player(int m, string n, Cell p, Die d)
+        public Player(int _money, string _name, Cell p, Die d)
         {
-            money = m;
-            name = n;
+            money = _money;
+            name = _name;
             latestPosition = 0;
             diceNumber = 0;
             position =  = new Cell();
