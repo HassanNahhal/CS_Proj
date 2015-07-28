@@ -16,7 +16,7 @@ namespace Monopoly
     {
         private const int maxNumber = 6;
         private int dieFaceValue;
-        Random r = new Random();
+        Random random = new Random();
 
         public Die()
         {
@@ -27,8 +27,8 @@ namespace Monopoly
         //into the local dicdeFaceValue variable
         public void DieRoll()
         {
-            dieFaceValue = r.Next(maxNumber);
-            dieFaceValue += r.Next(maxNumber);
+            dieFaceValue = random.Next(maxNumber);
+            dieFaceValue += random.Next(maxNumber);
         }
         
         public int GetRoll()
