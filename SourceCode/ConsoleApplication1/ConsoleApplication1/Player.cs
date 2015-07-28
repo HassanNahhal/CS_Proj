@@ -26,14 +26,14 @@ namespace Monopoly
         private int latestPosition;
         private Cell position;
         private Die die;
-
+            
         public Player()
         { 
             money = 0;
             name = "";
             latestPosition = 0;
             diceNumber = 0;
-            position =  = new Cell();
+            position = new Cell();
             die = new Die();
         }
         
@@ -43,7 +43,7 @@ namespace Monopoly
             name = _name;
             latestPosition = 0;
             diceNumber = 0;
-            position =  = new Cell();
+            position =  new Cell();
             die = new Die();
         }
 
