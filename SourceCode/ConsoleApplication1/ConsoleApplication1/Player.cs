@@ -2,10 +2,6 @@
  * 
  * 
  * Done by SUNG JOE KIM
- * 
- * Question : Who writing the programming 
- * to create object of player and die, 
- * and perform the operations of them?
  *  
  */
 
@@ -114,7 +110,7 @@ namespace Monopoly
 
         public void SetPosition()
         {
-            AddCell(position.SetAvailabl(this);
+            position.SetAvailable(true);
         }
 
         //Throw the dice and return the number and assign local dicenumber
