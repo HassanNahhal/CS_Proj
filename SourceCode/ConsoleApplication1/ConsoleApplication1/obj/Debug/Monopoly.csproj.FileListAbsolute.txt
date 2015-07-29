@@ -7,3 +7,5 @@ C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\C
 C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
+D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache

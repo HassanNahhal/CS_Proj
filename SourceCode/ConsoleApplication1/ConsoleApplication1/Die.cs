@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Monopoly
 {
 
-    class Die
+    public class Die
     {
         private const int maxNumber = 6;
         private int dieFaceValue;

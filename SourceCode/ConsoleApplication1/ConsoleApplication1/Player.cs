@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    class Player
+    public class Player
     {
         private int money;
         private string name;
@@ -75,7 +75,7 @@ namespace Monopoly
         {
             try
             {
-                Money = Money - position.GetPrice(LatestPosition);
+                Money = Money - position.GetPrice();
 
                 position.SetOwner(this);
             }
@@ -89,9 +89,10 @@ namespace Monopoly
         {
             try
             {
-                Money = Money - position.GetPrice(LatestPosition);
+                Money = Money - position.GetPrice();
+                //Changho  Add Cell Owner's Money needed
+                //position.SetPrice();                
 
-                position.SetPrice(LatestPosition);                
             }
             catch (Exception e)
             {
@@ -102,18 +103,18 @@ namespace Monopoly
         //What is different from between available and owner?
         public bool CheckProperty()
         {
-            return position.IsAvailable(LatestPosition);            
+            return position.IsAvailable();            
         }
 
         //Get the owner of current position, return the Player Class type
         public Player GetPosition()
         {
-            return position.GetOwner(LatestPosition);
+            return position.GetOwner();
         }
 
         public void SetPosition()
         {
-            position.SetAvailable(this);
+            AddCell(position.SetAvailabl(this);
         }
 
         //Throw the dice and return the number and assign local dicenumber
@@ -121,7 +122,7 @@ namespace Monopoly
         {
             int dieFace = 0;
 
-            dieFace = die.getRoll();
+            dieFace = die.GetRoll();
                
             DiceNumber = dieFace;
         }

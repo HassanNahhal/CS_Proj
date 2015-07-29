@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    class GameMaster
+    public class GameMaster
     {
         private int maxNumberOfPlayers;
         private Die [] dice;
