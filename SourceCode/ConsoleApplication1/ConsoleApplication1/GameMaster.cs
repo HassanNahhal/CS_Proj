@@ -17,7 +17,7 @@ namespace Monopoly
 {
     public class GameMaster
     {
-        private int maxNumberOfPlayers;
+        private int numberOfPlayers;
         private Die [] dice;
         private GameBoard gameBoard;
         private Player [] arrayOfPlayers;
@@ -40,9 +40,9 @@ namespace Monopoly
         }
 
 
-        public GameMaster ( int maxNumberOfPlayers , Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers , int turn )
+        public GameMaster ( int numberOfPlayers , Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers , int turn )
         {
-            this.maxNumberOfPlayers = maxNumberOfPlayers;
+            this.numberOfPlayers = numberOfPlayers;
             this.dice = dice;
             this.gameBoard = gameBoard;
             this.arrayOfPlayers = arrayOfPlayers;
@@ -55,7 +55,7 @@ namespace Monopoly
             set;
         }
 
-        public int MaxNumberOfPlayers
+        public int NumberOfPlayers
         {
             get;
             set;
@@ -121,6 +121,7 @@ namespace Monopoly
             return index;
         }
 
+        //Remove
         public int GetTurn ()
         {
             int turn = 0;

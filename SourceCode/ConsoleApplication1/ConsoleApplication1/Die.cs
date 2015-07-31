@@ -14,26 +14,24 @@ namespace Monopoly
 
     public class Die
     {
-        private const int maxNumber = 6;
+        private const int maxNumber = 7;
         private int dieFaceValue;
-        Random random = new Random();
+        private Random random = new Random();
 
         public Die()
         {
-            DieRoll();
+           // Remove DieRoll();
         }        
         
         //Roll the die twice and assign the total number
         //into the local dicdeFaceValue variable
-        public void DieRoll()
+        public int DieRoll()
         {
+            dieFaceValue = 0;
             dieFaceValue = random.Next(maxNumber);
             dieFaceValue += random.Next(maxNumber);
-        }
-        
-        public int GetRoll()
-        {
             return dieFaceValue;
+
         }
     }
  

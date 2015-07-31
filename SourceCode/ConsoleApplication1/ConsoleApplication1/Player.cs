@@ -22,8 +22,6 @@ namespace Monopoly
     {
         private int money;
         private string name;
-        private int diceNumber;
-        private int latestPosition;
         private Cell position;
         private Die die;
             
@@ -31,8 +29,6 @@ namespace Monopoly
         { 
             money = 0;
             name = "";
-            latestPosition = 0;
-            diceNumber = 0;
             position = new Cell();
             die = new Die();
         }
@@ -41,8 +37,6 @@ namespace Monopoly
         {
             money = _money;
             name = _name;
-            latestPosition = 0;
-            diceNumber = 0;
             position =  new Cell();
             die = new Die();
         }
@@ -71,25 +65,40 @@ namespace Monopoly
             set;
         }
 
-        public void BuyProperty()
+        //Todo return true or false based on subtraction of price
+        public bool BuyProperty()
         {
             try
             {
-                Money = Money - position.GetPrice();
+                if (Money - position.GetPrice() >= 0)
+                {
+                    Money = Money - position.GetPrice();
 
-                position.SetOwner(this);
+                    position.SetOwner(this);
+                    return true;
+                }else
+                {
+                    return false;
+                }
+                
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
-            }            
+            }
+            return false;
         }
 
-        public void PayForOwnerOfProperty()
+        public void PayRentTo()
         {
             try
             {
-                Money = Money - position.GetPrice();
+                //Todo If owner is me then nothing
+                //Todo Check!!!! if(position.GetOwner() != this)
+                {
+                    //Todo Check Money is enough
+                    Money = Money - position.GetPrice();
+                }
                 //Changho  Add Cell Owner's Money needed
                 //position.SetPrice();                
 
@@ -107,24 +116,24 @@ namespace Monopoly
         }
 
         //Get the owner of current position, return the Player Class type
-        public Player GetPosition()
+        public Cell GetPosition()
         {
-            return position.GetOwner();
+            return position;
         }
 
-        public void SetPosition()
+        public void SetPosition(Cell newCell)
         {
-            AddCell(position.SetAvailabl(this);
+            position = newCell;
         }
 
         //Throw the dice and return the number and assign local dicenumber
-        public void ThrowDie()
-        {
-            int dieFace = 0;
+        //Remove public void ThrowDie()
+        //{
+        //    int dieFace = 0;
 
-            dieFace = die.GetRoll();
+        //    dieFace = die.GetRoll();
                
-            DiceNumber = dieFace;
-        }
+        //    DiceNumber = dieFace;
+        //}
     }
 }

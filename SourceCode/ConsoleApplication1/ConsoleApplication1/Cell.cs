@@ -68,6 +68,7 @@ namespace Monopoly
         public void SetOwner(Player owner)
         {
             this.owner = owner;
+            this.SetAvailable(false);
         }
 
         public int GetIndex()
