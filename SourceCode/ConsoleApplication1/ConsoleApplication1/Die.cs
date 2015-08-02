@@ -15,7 +15,9 @@ namespace Monopoly
     public class Die
     {
         private const int maxNumber = 7;
-        private int dieFaceValue;
+        private int dieFirstFaceValue;
+        private int dieSecondFaceValue;
+
         private Random random = new Random();
 
         public Die()
@@ -27,10 +29,16 @@ namespace Monopoly
         //into the local dicdeFaceValue variable
         public int DieRoll()
         {
-            dieFaceValue = 0;
-            dieFaceValue = random.Next(maxNumber);
-            dieFaceValue += random.Next(maxNumber);
-            return dieFaceValue;
+
+            Console.WriteLine ( "The first Die is being rolled" );
+            dieFirstFaceValue = random.Next(maxNumber);
+            Console.WriteLine ( "The first Die = " + dieFirstFaceValue );
+
+            Console.WriteLine ( "The second Die is being rolled" );
+            dieSecondFaceValue= random.Next(maxNumber);
+            Console.WriteLine ( "The second Die = " + dieSecondFaceValue );
+
+            return dieFirstFaceValue + dieSecondFaceValue;
 
         }
     }

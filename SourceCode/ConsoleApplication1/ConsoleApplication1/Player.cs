@@ -117,6 +117,8 @@ namespace Monopoly
             return position;
         }
 
+        /*
+        //Joe please remove the unwanted code from below 
         public void SetPosition(Cell newCell)
         {
 <<<<<<<HEAD
@@ -125,6 +127,7 @@ namespace Monopoly
             position.SetAvailable(true);
 >>>>>>> 289afe9093e6bc80a0cec445ccd2a46b1b9d10c5
         }
+         */
 
         //Throw the dice and return the number and assign local dicenumber
         //Remove public void ThrowDie()

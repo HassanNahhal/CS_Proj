@@ -27,11 +27,13 @@ namespace Monopoly
             Player [] arrayOfPlayers = new Player [ numberOfPlayers ];
 
             GameMaster gameMaster = new GameMaster ( die , gameBoard , arrayOfPlayers );
+            gameMaster.NumberOfPlayers = 2;
+
+            Console.WriteLine ( "gameMaster.NumberOfPlayers :" + gameMaster.NumberOfPlayers );
 
 
             Console.WriteLine ( "enter anykey to continue..." );
             Console.ReadKey ();
-
         }
         static public void MainJoe ()
         {

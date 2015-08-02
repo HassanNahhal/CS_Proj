@@ -1,8 +1,8 @@
 ﻿/*
  * 
  * 
- * Done by Hassan Nahhal
- * 
+ * Done by : Hassan Nahhal
+ *           7192602
  * 
  * 
  */
@@ -24,13 +24,12 @@ namespace Monopoly
         static private int turn;
         private int utilDiceRoll;
 
-    
         //=====================Constructors===========================
         public GameMaster ()
         {
         }
 
-        public GameMaster (Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers  )
+        public GameMaster ( Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers )
         {
             this.dice = dice;
             this.gameBoard = gameBoard;
@@ -85,7 +84,7 @@ namespace Monopoly
         public Cell GetPosition ( Player player )
         {
             Cell position = new Cell ();
-            position=player.GetPosition ();
+            position = player.GetPosition ();
 
             return position;
         }
@@ -94,8 +93,8 @@ namespace Monopoly
         public Player GetCurrentPlayer ()
         {
             Player player = new Player ();
-            int turn= GetTurn();
-            player = GetPlayer ( turn+1);
+            int turn = GetTurn ();
+            player = GetPlayer ( turn + 1 );
             return player;
         }
 
@@ -103,7 +102,7 @@ namespace Monopoly
         public int GetCurrentPlayerIndex ()
         {
             Player player = GetCurrentPlayer ();
-            Cell cell= player.GetPosition ();
+            Cell cell = player.GetPosition ();
             int index = cell.GetIndex ();
             return index;
         }
@@ -136,30 +135,48 @@ namespace Monopoly
             {
                 turn = 0;
             }
+
             return turn;
         }
-        
+
         //get the sum of both dies
         //not sure if its important ,I can access it from Die Class
-        public Die GetUtilDiceRoll ()
+        public int GetUtilDiceRoll ()
         {
-            Die X = new Die ();
-            return X;
+            int diceRollSum = 0;
+            Die die = new Die ();
+            diceRollSum = die.DieRoll ();
+
+            return diceRollSum;
+        }
+
+        public void PlayGame ()
+        {
+            int turn = GetTurn ();
+            Console.WriteLine ( "Player " + turn + 1 + " will play now " );
+            Console.WriteLine ( "Player " + turn + 1 + " will roll the dice " );
+
+            GetUtilDiceRoll ();
+
         }
 
         //reset the game
         public void ResetGame ()
         {
+            GC.Collect ();
+            Console.WriteLine ( "collected " );
         }
 
         //start the game
         public void StartGame ()
         {
+
         }
-        
+
         //give the turn to another player
         public void SwitchTurn ()
         {
+
         }
 
         //=====================Methods End===========================

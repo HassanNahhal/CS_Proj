@@ -1,19 +1,6 @@
-C:\Users\Hassan Nahhal\OneDrive\Term 1- May 2015\Software Development Techniques PROG 8140\Project\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
-C:\Users\Hassan Nahhal\OneDrive\Term 1- May 2015\Software Development Techniques PROG 8140\Project\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
-C:\Users\Hassan Nahhal\OneDrive\Term 1- May 2015\Software Development Techniques PROG 8140\Project\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
-C:\Users\Hassan Nahhal\OneDrive\Term 1- May 2015\Software Development Techniques PROG 8140\Project\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
-C:\Users\Hassan Nahhal\OneDrive\Term 1- May 2015\Software Development Techniques PROG 8140\Project\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
 C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
-C:\Users\Hassan Nahhal\Documents\GitHub\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
-D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
-D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
-D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
-D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\Monopoly.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
-D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
-D:\Src\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
-=======
-D:\Dev_Files\GitHub\CS_PRJ\CS_Proj\SourceCode\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
->>>>>>> 289afe9093e6bc80a0cec445ccd2a46b1b9d10c5
