@@ -119,7 +119,7 @@ namespace Monopoly
 
         public void SetPosition(Cell newCell)
         {
-<<<<<<< HEAD
+<<<<<<<HEAD
             position = newCell;
 =======
             position.SetAvailable(true);

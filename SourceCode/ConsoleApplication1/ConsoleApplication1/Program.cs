@@ -10,33 +10,36 @@ namespace Monopoly
     {
         static void Main ( string [] args )
         {
-            MainHassan();
+            MainHassan ();
 
         }
-        static public void MainHassan()
+        static public void MainHassan ()
         {
-            // this will be static , anyone who wants to test , test below it and add comments 
             //HASSAN TEST HERE
-            int numberOfPlayers;
+            int numberOfPlayers = 0;
 
             Console.WriteLine ( "Welcome to MONOPOLY" );
             Console.WriteLine ( "please enter the number of players to start the game" );
             numberOfPlayers = int.Parse ( Console.ReadLine () );
 
-            GameMaster gameMaster = new GameMaster ();
-            gameMaster.NumberOfPlayers = numberOfPlayers;
+            Die [] die = new Die [ 2 ];
+            GameBoard gameBoard = new GameBoard ();
+            Player [] arrayOfPlayers = new Player [ numberOfPlayers ];
 
-            Console.WriteLine("enter anykey to continue...");
-            Console.ReadKey();
+            GameMaster gameMaster = new GameMaster ( die , gameBoard , arrayOfPlayers );
+
+
+            Console.WriteLine ( "enter anykey to continue..." );
+            Console.ReadKey ();
 
         }
-        static public void MainJoe()
+        static public void MainJoe ()
         {
             //JOE TEST HERE
 
         }
 
-        static public void MainChang()
+        static public void MainChang ()
         {
             //CHANG TEST HERE
 

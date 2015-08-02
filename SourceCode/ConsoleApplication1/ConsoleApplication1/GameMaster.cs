@@ -21,33 +21,25 @@ namespace Monopoly
         private Die [] dice;
         private GameBoard gameBoard;
         private Player [] arrayOfPlayers;
-        private int turn;
-        //what does utilDiceRoll do ??
-        //private int utilDiceRoll;
+        static private int turn;
+        private int utilDiceRoll;
 
-        /*
-        public int UtilDiceRoll
-        {
-            get;
-            set;
-        }
-         */
-
-
-
+    
+        //=====================Constructors===========================
         public GameMaster ()
         {
         }
 
-
-        public GameMaster ( int numberOfPlayers , Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers , int turn )
+        public GameMaster (Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers  )
         {
-            this.numberOfPlayers = numberOfPlayers;
             this.dice = dice;
             this.gameBoard = gameBoard;
             this.arrayOfPlayers = arrayOfPlayers;
-            this.turn = turn;
         }
+        //=====================Constructors End===========================
+
+
+        //=====================Properties===========================
 
         public int Turn
         {
@@ -79,43 +71,59 @@ namespace Monopoly
             set;
         }
 
-
-
-
-
-        public int GetPosition ( Player player )
+        public int UtilDiceRoll
         {
-            int position = 0;
+            get;
+            set;
+        }
+
+        //=====================Properties End===========================
+
+        //=====================Methods===========================
+
+        //get the possision of  player
+        public Cell GetPosition ( Player player )
+        {
+            Cell position = new Cell ();
+            position=player.GetPosition ();
 
             return position;
         }
+
+        //get a player based on the current turn
         public Player GetCurrentPlayer ()
         {
             Player player = new Player ();
-
-
+            int turn= GetTurn();
+            player = GetPlayer ( turn+1);
             return player;
         }
 
+        //get the index of the player based on the turn
         public int GetCurrentPlayerIndex ()
         {
-            int index = 0;
+            Player player = GetCurrentPlayer ();
+            Cell cell= player.GetPosition ();
+            int index = cell.GetIndex ();
             return index;
         }
 
+        //what is this ?? maybe be deleted 
         public GameBoard GetGameBoard ()
         {
             GameBoard X = new GameBoard ();
             return X;
         }
 
+        //get a player based on his possion
         public Player GetPlayer ( int index )
         {
             Player X = new Player ();
             return X;
         }
 
-        public int GetPlayerIndex ( Player X )
+        //get the location of a specific player
+        public int GetPlayerIndex ( Player player )
         {
             int index = 0;
             return index;
@@ -124,41 +132,38 @@ namespace Monopoly
         //Remove
         public int GetTurn ()
         {
-            int turn = 0;
+            if ( turn == numberOfPlayers )
+            {
+                turn = 0;
+            }
             return turn;
         }
-
+        
+        //get the sum of both dies
+        //not sure if its important ,I can access it from Die Class
         public Die GetUtilDiceRoll ()
         {
             Die X = new Die ();
             return X;
         }
 
+        //reset the game
         public void ResetGame ()
         {
         }
 
+        //start the game
         public void StartGame ()
         {
         }
-
-        /*
-        public int RollDice ()
-        {
-            int Dice = 0;
-            return Dice;
-        }
-        */
-
-        /*
-        public void SetMaxNumberOfPlayers ()
-        {
-        }
-        */
-
+        
+        //give the turn to another player
         public void SwitchTurn ()
         {
         }
+
+        //=====================Methods End===========================
+
 
 
     }
