@@ -153,10 +153,19 @@ namespace Monopoly
         public void PlayGame ()
         {
             int turn = GetTurn ();
+            utilDiceRoll = 0;
+
             Console.WriteLine ( "Player " + turn + 1 + " will play now " );
             Console.WriteLine ( "Player " + turn + 1 + " will roll the dice " );
 
-            GetUtilDiceRoll ();
+            utilDiceRoll = GetUtilDiceRoll ();
+            Console.WriteLine ( "Player " + turn + 1 + " will move " + utilDiceRoll + " cells" );
+
+            // move the player 
+
+
+
+
 
         }
 
