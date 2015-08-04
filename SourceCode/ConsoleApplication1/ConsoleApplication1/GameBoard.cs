@@ -28,7 +28,7 @@ namespace Monopoly
             }
         }
 
-        public Cell AddCell(Cell curPosition, int distance)
+        public Cell MoveToAnotherCell(Cell curPosition, int distance)
         {
             return cells.ElementAt(((curPosition.GetIndex() + distance) % NUM_OF_CELL)-1);
         }
