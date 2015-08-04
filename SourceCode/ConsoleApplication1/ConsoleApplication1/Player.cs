@@ -37,12 +37,6 @@ namespace Monopoly
             die = new Die();
         }
 
-        public int LatestPosition
-        {
-            get;
-            set;
-        }
-
         public int Money
         {
             get;
@@ -50,12 +44,6 @@ namespace Monopoly
         }
 
         public string Name
-        {
-            get;
-            set;
-        }
-
-        public int DiceNumber
         {
             get;
             set;
@@ -116,27 +104,5 @@ namespace Monopoly
         {
             return position;
         }
-
-        /*
-        //Joe please remove the unwanted code from below 
-        public void SetPosition(Cell newCell)
-        {
-<<<<<<<HEAD
-            position = newCell;
-=======
-            position.SetAvailable(true);
->>>>>>> 289afe9093e6bc80a0cec445ccd2a46b1b9d10c5
-        }
-         */
-
-        //Throw the dice and return the number and assign local dicenumber
-        //Remove public void ThrowDie()
-        //{
-        //    int dieFace = 0;
-
-        //    dieFace = die.GetRoll();
-               
-        //    DiceNumber = dieFace;
-        //}
     }
 }
