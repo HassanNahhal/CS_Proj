@@ -29,8 +29,16 @@ namespace Monopoly
             }
         }
 
-        public Cell MoveToAnotherCell(Cell curPosition, int distance)
+        public Cell MoveToAnotherCell(Cell curPosition, int distance, bool isTurn)
         {
+            if (curPosition.GetIndex() + distance > NUM_OF_CELL)
+            {
+                isTurn = true;
+            }
+            else
+            {
+                isTurn = false;
+            }
             return cells.ElementAt(((curPosition.GetIndex() + distance) % NUM_OF_CELL)-1);
         }
 
@@ -54,9 +62,19 @@ namespace Monopoly
             //Not Need, Will be erased
         }
 
-        public void QueryCellIndex()
+        public int[] QueryCellIndex(Player queryPlayer)
         {
-            //Not Need, Will be erased
+            int[] indexArrary = new int[NUM_OF_CELL];
+            int j = 0;
+
+            for (int i = 0; i < NUM_OF_CELL; i++)
+            {
+                if (cells.ElementAt(i).GetOwner() == queryPlayer)
+                {
+                    indexArrary[j++] = i+1;
+                }
+            }
+            return indexArrary;
         }
     }
 }
