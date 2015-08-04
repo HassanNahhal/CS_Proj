@@ -19,15 +19,17 @@ namespace Monopoly
         String cellName;
         int index;
         int cellPrice;
+        int rentPrice;
         Player owner;
 
-        public Cell(int index, String cellName, int cellPrice)
+        public Cell(int index, String cellName, int cellPrice, int rentPrice)
         {
             this.index = index;
             available = true;
             owner = null;
             this.cellName = cellName;
             this.cellPrice = cellPrice;
+            this.rentPrice = rentPrice;
         }
 
         public Cell()
@@ -39,6 +41,11 @@ namespace Monopoly
             return this.cellPrice;
         }
         
+        public int GetRentPrice()
+        {
+            return this.rentPrice;
+        }
+
         public Boolean IsAvailable()
         {
             return available;

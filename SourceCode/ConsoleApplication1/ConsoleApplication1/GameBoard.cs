@@ -17,6 +17,7 @@ namespace Monopoly
     {
         const int NUM_OF_CELL = 40;
         const int FIX_CELL_PRICE = 2000;
+        const int FIX_RENT_PRICE = 500;
 
         List<Cell> cells = new List<Cell>();
 
@@ -24,7 +25,7 @@ namespace Monopoly
         {
             for (int index = 1; index <= NUM_OF_CELL; index++)
             {
-                cells.Add(new Cell(index, "Cell" + index, FIX_CELL_PRICE));
+                cells.Add(new Cell(index, "Cell" + index, FIX_CELL_PRICE, FIX_RENT_PRICE));
             }
         }
 
