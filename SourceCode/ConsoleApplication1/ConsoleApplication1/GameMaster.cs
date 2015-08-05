@@ -173,10 +173,11 @@ namespace Monopoly
 
         public void PlayGame ()
         {
-            int turn = GetTurn ();
-            utilDiceRoll = 0;
+            turn = GetTurn ();
 
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will play now " );
+            Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + arrayOfPlayers [ turn ].GetPosition ().GetIndex () );
+            Console.WriteLine ();
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will roll the die " );
             Console.WriteLine ();
 
@@ -186,25 +187,28 @@ namespace Monopoly
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will move " + utilDiceRoll + " cells" );
             Console.WriteLine ();
 
-
-            // move the player 
-
-            
+            Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + MovePlayer ( utilDiceRoll ) + " now" );
+            Console.WriteLine ();
 
         }
 
 
         //give the turn to another player
-        public bool SwitchTurn ()
+        public void SwitchTurn ()
         {
             turn = ( turn + 1 ) % arrayOfPlayers.Length;
-            return true;
-
+            PlayGame ();
         }
 
-        public void MovePlayer ()
+        public int MovePlayer ( int utilDiceRoll )
         {
-           // arrayOfPlayers [ turn ].SetPosition ();
+            return arrayOfPlayers [ turn ].SetPosition ( utilDiceRoll ).GetIndex ();
+        }
+
+        public void EndGame ()
+        {
+            Console.WriteLine ( "enter anykey to continue..." );
+            Console.ReadKey ();
         }
 
 

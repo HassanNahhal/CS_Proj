@@ -16,8 +16,8 @@ namespace Monopoly
 {
     class Questions
     {
-        //JOE hassan commented in player
 
+        /*********************************************************/
         // Players name's start from 1 while turn starts from 0 
 
         //Joe check Player.cs , there is an conflict at setPosition ()
