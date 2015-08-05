@@ -120,7 +120,7 @@ namespace Monopoly
             //Player cannot get the number of RollDie, hence cannot pass the distance
             //Game Master has to pass the number of RollDie(int distance)
             //to the SetPosition method as parameter
-            gameBoard.MoveToAnotherCell(position, distance);
+            gameBoard.MoveToAnotherCell(position, distance, false);
 
             return position;
         }
