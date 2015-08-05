@@ -17,8 +17,7 @@ namespace Monopoly
 {
     public class GameMaster
     {
-        private int numberOfPlayers;
-        private Die [] dice;
+        private Die [] die;
         private GameBoard gameBoard;
         private Player [] arrayOfPlayers;
         static private int turn;
@@ -31,7 +30,7 @@ namespace Monopoly
 
         public GameMaster ( Die [] dice , GameBoard gameBoard , Player [] arrayOfPlayers )
         {
-            this.dice = dice;
+            this.die = dice;
             this.gameBoard = gameBoard;
             this.arrayOfPlayers = arrayOfPlayers;
         }
@@ -42,20 +41,27 @@ namespace Monopoly
 
         public int Turn
         {
-            get;
-            set;
+            get
+            {
+                return turn;
+            }
+            set
+            {
+                turn = Turn;
+            }
         }
 
-        public int NumberOfPlayers
-        {
-            get;
-            set;
-        }
 
-        public Die Die
+        public Die [] Die
         {
-            get;
-            set;
+            get
+            {
+                return die;
+            }
+            set
+            {
+                die = Die;
+            }
         }
 
         public GameBoard GameBoard
@@ -66,15 +72,30 @@ namespace Monopoly
 
         public Player [] ArrayOfPlayers
         {
-            get;
-            set;
+            get
+            {
+                return arrayOfPlayers;
+            }
+            set
+            {
+                arrayOfPlayers = ArrayOfPlayers;
+            }
         }
 
         public int UtilDiceRoll
         {
-            get;
-            set;
+            get
+            {
+                return utilDiceRoll;
+            }
+
+            set
+            {
+                utilDiceRoll = UtilDiceRoll;
+            }
         }
+
+
 
         //=====================Properties End===========================
 
@@ -131,7 +152,7 @@ namespace Monopoly
         //Remove
         public int GetTurn ()
         {
-            if ( turn == numberOfPlayers )
+            if ( turn == arrayOfPlayers.Length )
             {
                 turn = 0;
             }
@@ -155,39 +176,40 @@ namespace Monopoly
             int turn = GetTurn ();
             utilDiceRoll = 0;
 
-            Console.WriteLine ( "Player " + turn + 1 + " will play now " );
-            Console.WriteLine ( "Player " + turn + 1 + " will roll the dice " );
+            Console.WriteLine ( "Player " + ( turn + 1 ) + " will play now " );
+            Console.WriteLine ( "Player " + ( turn + 1 ) + " will roll the die " );
+            Console.WriteLine ();
 
             utilDiceRoll = GetUtilDiceRoll ();
-            Console.WriteLine ( "Player " + turn + 1 + " will move " + utilDiceRoll + " cells" );
+            Console.WriteLine ();
+
+            Console.WriteLine ( "Player " + ( turn + 1 ) + " will move " + utilDiceRoll + " cells" );
+            Console.WriteLine ();
+
 
             // move the player 
 
-
-
-
+            
 
         }
 
-        //reset the game
-        public void ResetGame ()
-        {
-            GC.Collect ();
-            Console.WriteLine ( "collected " );
-        }
-
-        //start the game
-        public void StartGame ()
-        {
-
-        }
 
         //give the turn to another player
-        public void SwitchTurn ()
+        public bool SwitchTurn ()
         {
+            turn = ( turn + 1 ) % arrayOfPlayers.Length;
+            return true;
 
         }
 
+        public void MovePlayer ()
+        {
+           // arrayOfPlayers [ turn ].SetPosition ();
+        }
+
+
+
+        // 
         //=====================Methods End===========================
 
 
