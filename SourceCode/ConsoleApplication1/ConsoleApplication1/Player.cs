@@ -136,13 +136,10 @@ namespace Monopoly
             string displayIndexOfCell = "";
             string temp = "";
 
-<<<<<<< HEAD
             displayIndexOfCell += "Select the index number of property to sell: \n";
             //input value of the index of the Cell that Player decide to sell
             for ( int i = 1 ; i <= indexOfOwnerOfCell.Length ; i++ )
-=======
             if (indexOfOwnerOfCell.Length > 0)
->>>>>>> a200eb51c468a89f5fb5fb3e11e18cdf95a072f3
             {
                 displayIndexOfCell += "Select the index number of property to sell: \n";
                 displayIndexOfCell += "index[ ";
