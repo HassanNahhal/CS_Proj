@@ -187,7 +187,7 @@ namespace Monopoly
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will move " + utilDiceRoll + " cells" );
             Console.WriteLine ();
 
-            Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + MovePlayer ( utilDiceRoll ) + " now" );
+            Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + MovePlayer ( arrayOfPlayers [ turn ] , utilDiceRoll ).GetIndex () + " now" );
             Console.WriteLine ();
 
 
@@ -208,23 +208,45 @@ namespace Monopoly
             else
             {
                 Console.WriteLine ( "Unfortunaetly you are in someone's properties \n You have you pay rent for him" );
-                arrayOfPlayers [ turn ].PayRentTo ();
+                if ( arrayOfPlayers [ turn ].PayRentTo () == true )
+                {
+                    Console.WriteLine ( "Rent have been paid " );
+                }
+
+                else
+                {
+                    Console.WriteLine ( "You dont have suffecient funds \n please sell a property " );
+                    if ( SellProperty () == false )
+                    {
+                        arrayOfPlayers [ turn ].IsKickedOut = true;
+                        Console.WriteLine ( "You dont have any propertie to sell \n you have been kicked out of the game" );
+                    }
+
+                }
+
             }
+            SwitchTurn ();
         }
 
 
         //give the turn to another player
         public void SwitchTurn ()
         {
+            bool flag = arrayOfPlayers [ turn ].IsKickedOut;
+
             turn = ( turn + 1 ) % arrayOfPlayers.Length;
-            PlayGame ();
-        }
+            if (flag != false )
+                PlayGame ();
+            else
+                SwitchTurn ();
 
-        public int MovePlayer ( int utilDiceRoll )
-        {
-            return arrayOfPlayers [ turn ].SetPosition ( utilDiceRoll ).GetIndex ();
         }
-
+        /*
+                public int MovePlayer ( int utilDiceRoll )
+                {
+                    return arrayOfPlayers [ turn ].MovePlayer ( utilDiceRoll ).GetIndex ();
+                }
+                */
         public void EndGame ()
         {
             Console.WriteLine ( "enter anykey to continue..." );
@@ -232,7 +254,78 @@ namespace Monopoly
         }
 
 
+        //Done By Joe
+        //Set the current position of the Player into the Cell object via GameBoard Object
+        public Cell MovePlayer ( Player curPlayer , int distance )
+        {
+            bool isTurn;
+            //Player cannot get the number of RollDie, hence cannot pass the distance
+            //Game Master has to pass the number of RollDie(int distance)
+            //to the MovePlayer method as parameter
 
+            curPlayer.Position = gameBoard.MoveToAnotherCell ( curPlayer.GetPosition () , distance , out isTurn );
+            if ( isTurn == true )
+                curPlayer.Money += 1000;
+
+            return curPlayer.Position;
+        }
+
+        //Done By Joe
+        public bool SellProperty ()
+        {
+            bool returnValue = false;
+            int [] indexOfOwnerOfCell = gameBoard.QueryCellIndex ( arrayOfPlayers [ turn ] );
+            string selectedIndex = "";
+            string displayIndexOfCell = "";
+            string temp = "";
+
+            //input value of the index of the Cell that Player decide to sell
+            if ( indexOfOwnerOfCell.Length > 0 )
+            {
+                displayIndexOfCell += "Select the index number of property to sell: \n";
+                displayIndexOfCell += "index[ ";
+
+                //input value of the index of the Cell that Player decide to sell
+                for ( int j = 1 ; j <= indexOfOwnerOfCell.Length ; j++ )
+                {
+                    temp += indexOfOwnerOfCell [ j ].ToString ();
+
+                    if ( j < indexOfOwnerOfCell.Length )
+                    {
+                        temp += ", ";
+                    }
+                }
+                displayIndexOfCell += temp + " ]";
+
+                Console.WriteLine ( displayIndexOfCell );
+
+                selectedIndex = Console.ReadLine ();
+
+                //Set the current cell available = true After selling the property
+                //need to pass the parameter the index of cell which will
+
+                //Get the Cell which the player decided to sell the index of Cell
+                Cell changeCellOfOwner = gameBoard.GetCell ( int.Parse ( selectedIndex ) );
+                changeCellOfOwner.SetOwner ( null );       //change the Owner of the index of the Cell to "null"
+                changeCellOfOwner.SetAvailable ( true );   //change the "Available" of the index of the Cell to "True"
+
+                returnValue = true;
+            }
+            else
+            {
+                displayIndexOfCell = "There is no property of the current player.\n";
+
+                Console.WriteLine ( displayIndexOfCell );
+                Console.ReadKey ();
+
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
+
+        //PRINT FUNCTION 
+        //kick out 
         // 
         //=====================Methods End===========================
 

@@ -15,63 +15,68 @@ namespace Monopoly
 {
     public class GameBoard
     {
-        const int NUM_OF_CELL = 40;
+        const int NUM_OF_CELL = 20;
         const int FIX_CELL_PRICE = 2000;
         const int FIX_RENT_PRICE = 500;
 
-        List<Cell> cells = new List<Cell>();
+        List<Cell> cells = new List<Cell> ();
 
-        public GameBoard()
+        public GameBoard ()
         {
-            for (int index = 1; index <= NUM_OF_CELL; index++)
+            for ( int index = 1 ; index <= NUM_OF_CELL ; index++ )
             {
-                cells.Add(new Cell(index, "Cell" + index, FIX_CELL_PRICE, FIX_RENT_PRICE));
+                cells.Add ( new Cell ( index , "Cell" + index , FIX_CELL_PRICE , FIX_RENT_PRICE ) );
             }
         }
 
-        public Cell MoveToAnotherCell(Cell curPosition, int distance, bool isTurn)
+        public Cell MoveToAnotherCell ( Cell curPosition , int distance , out bool isTurn )
         {
-            if (curPosition.GetIndex() + distance > NUM_OF_CELL)
+            int newIndex;
+
+            newIndex = ( curPosition.GetIndex () - 1 ) + distance;
+            if ( newIndex >= NUM_OF_CELL )
             {
                 isTurn = true;
+                newIndex = newIndex - NUM_OF_CELL;
+                curPosition.GetOwner ().TurnNumber++;
             }
             else
             {
                 isTurn = false;
             }
-            return cells.ElementAt(((curPosition.GetIndex() + distance) % NUM_OF_CELL)-1);
+            return cells.ElementAt ( newIndex );
         }
 
-        public Cell GetCell(int index)
+        public Cell GetCell ( int index )
         {
-            return cells.ElementAt(index-1);
+            return cells.ElementAt ( index - 1 );
         }
 
-        public int GetCellNumber(Cell curPosition)
+        public int GetCellNumber ( Cell curPosition )
         {
-            return curPosition.GetIndex();
+            return curPosition.GetIndex ();
         }
 
-        public void GetPropertiesInMonopoly()
-        {
-            //Not Need, Will be erased
-        }
-
-        public void QueryCell()
+        public void GetPropertiesInMonopoly ()
         {
             //Not Need, Will be erased
         }
 
-        public int[] QueryCellIndex(Player queryPlayer)
+        public void QueryCell ()
         {
-            int[] indexArrary = new int[NUM_OF_CELL];
+            //Not Need, Will be erased
+        }
+
+        public int [] QueryCellIndex ( Player queryPlayer )
+        {
+            int [] indexArrary = new int [ NUM_OF_CELL ];
             int j = 0;
 
-            for (int i = 0; i < NUM_OF_CELL; i++)
+            for ( int i = 0 ; i < NUM_OF_CELL ; i++ )
             {
-                if (cells.ElementAt(i).GetOwner() == queryPlayer)
+                if ( cells.ElementAt ( i ).GetOwner () == queryPlayer )
                 {
-                    indexArrary[j++] = i+1;
+                    indexArrary [ j++ ] = i + 1;
                 }
             }
             return indexArrary;

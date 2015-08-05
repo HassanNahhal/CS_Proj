@@ -31,7 +31,7 @@ namespace Monopoly
 
             for ( int i = 0 ; i < numberOfPlayers ; i++ )
             {
-                arrayOfPlayers [ i ] = new Player ();
+                arrayOfPlayers [ i ] = new Player (5000,"Player "+(i+1));
             }
 
             //creating gameMaster
