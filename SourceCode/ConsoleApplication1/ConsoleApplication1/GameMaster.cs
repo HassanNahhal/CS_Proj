@@ -190,6 +190,26 @@ namespace Monopoly
             Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + MovePlayer ( utilDiceRoll ) + " now" );
             Console.WriteLine ();
 
+
+            if ( arrayOfPlayers [ turn ].CheckProperty () == true )
+            {
+                string answer;
+                Console.WriteLine ( "This cell is available" );
+                Console.WriteLine ( "Do you want to buy this cell? \n y/n" );
+                answer = Console.ReadLine ();
+
+                if ( answer == "y" || answer == "Y" )
+                {
+                    if ( arrayOfPlayers [ turn ].BuyProperty () == true )
+                        Console.WriteLine ( "Congratulation , you own this cell now" );
+                }
+            }
+
+            else
+            {
+                Console.WriteLine ( "Unfortunaetly you are in someone's properties \n You have you pay rent for him" );
+                arrayOfPlayers [ turn ].PayRentTo ();
+            }
         }
 
 
