@@ -35,14 +35,28 @@ namespace Monopoly
 
         public int Money
         {
-            get;
-            set;
+            get
+            {
+                return money;
+            }
+
+            set
+            {
+                money = value;
+            }
         }
 
         public string Name
         {
-            get;
-            set;
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
         }
 
         //Todo return true or false based on subtraction of price
@@ -50,9 +64,9 @@ namespace Monopoly
         {
             try
             {
-                if ( Money - position.GetPrice () >= 0 )
+                if ( money - position.GetPrice () >= 0 )
                 {
-                    Money = Money - position.GetPrice ();
+                    money = money - position.GetPrice ();
 
                     position.SetOwner ( this );
                     return true;
@@ -78,10 +92,10 @@ namespace Monopoly
                 if ( this != position.GetOwner () )
                 {
                     //current player has more money that the player has to pay for rent
-                    if ( Money - position.GetRentPrice () >= 0 )
+                    if ( money - position.GetRentPrice () >= 0 )
                     {
                         //deduct the money of player by rent fee for the owner
-                        Money = Money - position.GetRentPrice ();
+                        money = money - position.GetRentPrice ();
 
                         //transfer the money for Rent to the owner
                         PayRentToOwner ();
@@ -129,27 +143,32 @@ namespace Monopoly
 
         //Sell the one of property which urrent player has
         //To pay for rent to the owner of current position
-        public bool SellProperty ()
+        public bool SellProperty()
         {
-            int [] indexOfOwnerOfCell = gameBoard.QueryCellIndex ( this );
+            bool returnValue = false;
+            int[] indexOfOwnerOfCell = gameBoard.QueryCellIndex(this);
             string selectedIndex = "";
             string displayIndexOfCell = "";
             string temp = "";
 
+<<<<<<< HEAD
             displayIndexOfCell += "Select the index number of property to sell: \n";
             //input value of the index of the Cell that Player decide to sell
             for ( int i = 1 ; i <= indexOfOwnerOfCell.Length ; i++ )
+=======
+            //input value of the index of the Cell that Player decide to sell
+>>>>>>> origin/master
             if (indexOfOwnerOfCell.Length > 0)
             {
                 displayIndexOfCell += "Select the index number of property to sell: \n";
                 displayIndexOfCell += "index[ ";
 
                 //input value of the index of the Cell that Player decide to sell
-                for (int i = 1; i <= indexOfOwnerOfCell.Length; i++)
+                for (int j = 1; j <= indexOfOwnerOfCell.Length; j++)
                 {
-                    temp += indexOfOwnerOfCell[i].ToString();
+                    temp += indexOfOwnerOfCell[j].ToString();
 
-                    if(i < indexOfOwnerOfCell.Length)
+                    if (j < indexOfOwnerOfCell.Length)
                     {
                         temp += ", ";
                     }
@@ -159,6 +178,16 @@ namespace Monopoly
                 Console.WriteLine(displayIndexOfCell);
 
                 selectedIndex = Console.ReadLine();
+
+                //Set the current cell available = true After selling the property
+                //need to pass the parameter the index of cell which will
+
+                //Get the Cell which the player decided to sell the index of Cell
+                Cell changeCellOfOwner = gameBoard.GetCell(int.Parse(selectedIndex));
+                changeCellOfOwner.SetOwner(null);       //change the Owner of the index of the Cell to "null"
+                changeCellOfOwner.SetAvailable(true);   //change the "Available" of the index of the Cell to "True"
+
+                returnValue = true;
             }
             else
             {
@@ -166,17 +195,11 @@ namespace Monopoly
 
                 Console.WriteLine(displayIndexOfCell);
                 Console.ReadKey();
+
+                returnValue = false;
             }
-                
-             //Set the current cell available = true After selling the property
-            //need to pass the parameter the index of cell which will
 
-            //Get the Cell which the player decided to sell the index of Cell
-            Cell changeCellOfOwner = gameBoard.GetCell ( int.Parse ( selectedIndex ) );
-            changeCellOfOwner.SetOwner ( null );       //change the Owner of the index of the Cell to "null"
-            changeCellOfOwner.SetAvailable ( true );   //change the "Available" of the index of the Cell to "True"
-
-            return true;
+            return returnValue;
         }
     }
 }
