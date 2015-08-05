@@ -64,9 +64,9 @@ namespace Monopoly
         {
             try
             {
-                if ( Money - position.GetPrice () >= 0 )
+                if ( money - position.GetPrice () >= 0 )
                 {
-                    Money = Money - position.GetPrice ();
+                    money = money - position.GetPrice ();
 
                     position.SetOwner ( this );
                     return true;
@@ -92,10 +92,10 @@ namespace Monopoly
                 if ( this != position.GetOwner () )
                 {
                     //current player has more money that the player has to pay for rent
-                    if ( Money - position.GetRentPrice () >= 0 )
+                    if ( money - position.GetRentPrice () >= 0 )
                     {
                         //deduct the money of player by rent fee for the owner
-                        Money = Money - position.GetRentPrice ();
+                        money = money - position.GetRentPrice ();
 
                         //transfer the money for Rent to the owner
                         PayRentToOwner ();
