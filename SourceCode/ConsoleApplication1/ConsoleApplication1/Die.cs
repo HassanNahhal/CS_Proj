@@ -33,6 +33,7 @@ namespace Monopoly
             Console.WriteLine ( "The first Die is being rolled" );
             dieFirstFaceValue = random.Next(maxNumber);
             Console.WriteLine ( "The first Die = " + dieFirstFaceValue );
+            Console.WriteLine ();
 
             Console.WriteLine ( "The second Die is being rolled" );
             dieSecondFaceValue= random.Next(maxNumber);
