@@ -10,6 +10,13 @@ namespace Monopoly
     {
         static void Main ( string [] args )
         {
+            /*
+            GameMaster gameMaster = new GameMaster();
+            gameMaster.Print ();
+            Console.WriteLine ( "enter anykey to continue..." );
+            Console.ReadKey ();
+             */
+
             MainHassan ();
 
         }

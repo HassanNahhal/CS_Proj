@@ -216,7 +216,7 @@ namespace Monopoly
                 else
                 {
                     Console.WriteLine ( "You dont have suffecient funds \n please sell a property " );
-                    if ( SellProperty () == false )
+                    if ( SellProperty ( arrayOfPlayers [ turn ] ) == false )
                     {
                         arrayOfPlayers [ turn ].IsKickedOut = true;
                         Console.WriteLine ( "You dont have any propertie to sell \n you have been kicked out of the game" );
@@ -232,21 +232,15 @@ namespace Monopoly
         //give the turn to another player
         public void SwitchTurn ()
         {
-            bool flag = arrayOfPlayers [ turn ].IsKickedOut;
-
             turn = ( turn + 1 ) % arrayOfPlayers.Length;
-            if (flag != false )
+
+            if ( arrayOfPlayers [ turn ].IsKickedOut != false )
                 PlayGame ();
             else
                 SwitchTurn ();
 
         }
-        /*
-                public int MovePlayer ( int utilDiceRoll )
-                {
-                    return arrayOfPlayers [ turn ].MovePlayer ( utilDiceRoll ).GetIndex ();
-                }
-                */
+
         public void EndGame ()
         {
             Console.WriteLine ( "enter anykey to continue..." );
@@ -265,39 +259,31 @@ namespace Monopoly
 
             curPlayer.Position = gameBoard.MoveToAnotherCell ( curPlayer.GetPosition () , distance , out isTurn );
             if ( isTurn == true )
+            {
                 curPlayer.Money += 1000;
-
+                curPlayer.TurnNumber++;
+            }
             return curPlayer.Position;
         }
 
         //Done By Joe
-        public bool SellProperty ()
+        public bool SellProperty ( Player OwenerOfTheCell )
         {
             bool returnValue = false;
             int [] indexOfOwnerOfCell = gameBoard.QueryCellIndex ( arrayOfPlayers [ turn ] );
             string selectedIndex = "";
-            string displayIndexOfCell = "";
-            string temp = "";
 
             //input value of the index of the Cell that Player decide to sell
             if ( indexOfOwnerOfCell.Length > 0 )
             {
-                displayIndexOfCell += "Select the index number of property to sell: \n";
-                displayIndexOfCell += "index[ ";
+                Console.WriteLine ( "Please choose the property that you want to sell" );
+
+                for ( int i = 0 ; i < indexOfOwnerOfCell.Length ; i++ )
+                {
+                    Console.Write ( indexOfOwnerOfCell [ i ] + " " );
+                }
 
                 //input value of the index of the Cell that Player decide to sell
-                for ( int j = 1 ; j <= indexOfOwnerOfCell.Length ; j++ )
-                {
-                    temp += indexOfOwnerOfCell [ j ].ToString ();
-
-                    if ( j < indexOfOwnerOfCell.Length )
-                    {
-                        temp += ", ";
-                    }
-                }
-                displayIndexOfCell += temp + " ]";
-
-                Console.WriteLine ( displayIndexOfCell );
 
                 selectedIndex = Console.ReadLine ();
 
@@ -306,17 +292,17 @@ namespace Monopoly
 
                 //Get the Cell which the player decided to sell the index of Cell
                 Cell changeCellOfOwner = gameBoard.GetCell ( int.Parse ( selectedIndex ) );
-                changeCellOfOwner.SetOwner ( null );       //change the Owner of the index of the Cell to "null"
-                changeCellOfOwner.SetAvailable ( true );   //change the "Available" of the index of the Cell to "True"
+                //change the Owner of the index of the Cell to "null"
+                changeCellOfOwner.SetOwner ( null );
+                //change the "Available" of the index of the Cell to "True"
+                changeCellOfOwner.SetAvailable ( true );
 
+                OwenerOfTheCell.Money += 1500;
                 returnValue = true;
             }
             else
             {
-                displayIndexOfCell = "There is no property of the current player.\n";
-
-                Console.WriteLine ( displayIndexOfCell );
-                Console.ReadKey ();
+                Console.WriteLine ( "There is no property of the current player" );
 
                 returnValue = false;
             }
@@ -324,8 +310,18 @@ namespace Monopoly
             return returnValue;
         }
 
+        public void Print ()
+        {
+
+            String.Format ( "|{0,10}|{1,10}|{2,10}|{3,10}|" , "F" , "G" , "H" , "Y" );            /*
+            for ( int counter = 0 ; counter < typeOfShirtArray.Length ; counter++ )
+            {
+                Console.WriteLine ( "{0,-20}{1,10:N1}" , typeOfShirtArray [ counter ] , priceOfShirtArray [ counter ] );
+            }
+            */
+        }
+
         //PRINT FUNCTION 
-        //kick out 
         // 
         //=====================Methods End===========================
 

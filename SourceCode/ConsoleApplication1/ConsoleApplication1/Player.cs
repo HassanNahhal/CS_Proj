@@ -15,7 +15,7 @@ namespace Monopoly
         private int money;
         private string name;
         private Cell position;
-        private bool isKickedOut;
+        private bool isKickedOut = false;
         private int turnNumber;
 
         public Player ()
@@ -36,6 +36,19 @@ namespace Monopoly
             turnNumber = 0;
         }
 
+        public bool IsKickedOut
+        {
+            get
+            {
+                return isKickedOut;
+            }
+
+            set
+            {
+                isKickedOut = value;
+            }
+        }
+
         public int TurnNumber
         {
             get
@@ -49,11 +62,7 @@ namespace Monopoly
             }
         }
 
-        public bool IsKickedOut
-        {
-            get;
-            set;
-        }
+
 
         public Cell Position
         {

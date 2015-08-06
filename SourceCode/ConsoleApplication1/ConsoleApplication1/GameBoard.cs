@@ -38,7 +38,6 @@ namespace Monopoly
             {
                 isTurn = true;
                 newIndex = newIndex - NUM_OF_CELL;
-                curPosition.GetOwner ().TurnNumber++;
             }
             else
             {
@@ -69,17 +68,38 @@ namespace Monopoly
 
         public int [] QueryCellIndex ( Player queryPlayer )
         {
-            int [] indexArrary = new int [ NUM_OF_CELL ];
+            Console.WriteLine ( "QueryCellIndex" );
+            int [] tempArrary = new int [ NUM_OF_CELL ];
+            int [] arraryOfCellsOfPlayer;
             int j = 0;
 
             for ( int i = 0 ; i < NUM_OF_CELL ; i++ )
             {
+                Console.WriteLine ( "first loop" );
+
                 if ( cells.ElementAt ( i ).GetOwner () == queryPlayer )
                 {
-                    indexArrary [ j++ ] = i + 1;
+                    tempArrary [ j++ ] = i + 1;
                 }
             }
-            return indexArrary;
+
+            int k = 0;
+            int counter = 0;
+
+            while ( tempArrary [ k ] != 0 )
+            {
+                Console.WriteLine ( "second loop" );
+                k++;
+                counter++;
+            }
+
+            arraryOfCellsOfPlayer = new int [ counter ];
+            for ( int i = 0 ; i < counter ; i++ )
+            {
+                Console.WriteLine ( "third loop" );
+                arraryOfCellsOfPlayer [ i ] = tempArrary [ i ];
+            }
+            return arraryOfCellsOfPlayer;
         }
     }
 }
