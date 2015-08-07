@@ -152,12 +152,7 @@ namespace Monopoly
         //Remove
         public int GetTurn ()
         {
-            if ( turn == arrayOfPlayers.Length )
-            {
-                turn = 0;
-            }
-
-            return turn;
+            return turn = ( turn + 1 ) % arrayOfPlayers.Length;
         }
 
         //get the sum of both dies
@@ -173,10 +168,10 @@ namespace Monopoly
 
         public void PlayGame ()
         {
-            turn = GetTurn ();
+
+            Print ();
 
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will play now " );
-            Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + arrayOfPlayers [ turn ].GetPosition ().GetIndex () );
             Console.WriteLine ();
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will roll the die " );
             Console.WriteLine ();
@@ -185,42 +180,66 @@ namespace Monopoly
             Console.WriteLine ();
 
             Console.WriteLine ( "Player " + ( turn + 1 ) + " will move " + utilDiceRoll + " cells" );
-            Console.WriteLine ();
-
             Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + MovePlayer ( arrayOfPlayers [ turn ] , utilDiceRoll ).GetIndex () + " now" );
             Console.WriteLine ();
 
 
             if ( arrayOfPlayers [ turn ].CheckProperty () == true )
             {
+
                 string answer;
                 Console.WriteLine ( "This cell is available" );
-                Console.WriteLine ( "Do you want to buy this cell? \n y/n" );
+                Console.WriteLine ( "Do you want to buy this cell? \ny/n" );
                 answer = Console.ReadLine ();
 
                 if ( answer == "y" || answer == "Y" )
                 {
-                    if ( arrayOfPlayers [ turn ].BuyProperty () == true )
-                        Console.WriteLine ( "Congratulation , you own this cell now" );
-                }
-            }
+                    if ( arrayOfPlayers [ turn ].Money >= 2000 )
+                    {
+                        if ( arrayOfPlayers [ turn ].BuyProperty () == true )
+                        {
+                            Console.WriteLine ( "Congratulation , you own this cell now" );
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine ( "Unfortunaetly you don't have enough money to buy it " );
+                    }
 
-            else
-            {
-                Console.WriteLine ( "Unfortunaetly you are in someone's properties \n You have you pay rent for him" );
-                if ( arrayOfPlayers [ turn ].PayRentTo () == true )
-                {
-                    Console.WriteLine ( "Rent have been paid " );
                 }
 
                 else
                 {
-                    Console.WriteLine ( "You dont have suffecient funds \n please sell a property " );
-                    if ( SellProperty ( arrayOfPlayers [ turn ] ) == false )
+                    Console.WriteLine ( arrayOfPlayers [ turn ] + " Didnt buy this cell" );
+                }
+
+            }
+
+            else
+            {
+                if ( arrayOfPlayers [ turn ].Position.GetOwner () != arrayOfPlayers [ turn ] )
+                {
+                    Console.WriteLine ( "Unfortunaetly you are in someone's properties \nYou have you pay rent for him" );
+                    if ( arrayOfPlayers [ turn ].PayRentTo () == true )
                     {
-                        arrayOfPlayers [ turn ].IsKickedOut = true;
-                        Console.WriteLine ( "You dont have any propertie to sell \n you have been kicked out of the game" );
+                        Console.WriteLine ( "You have paid rent for " + arrayOfPlayers [ turn ].Position.GetOwner ().Name );
                     }
+
+                    else
+                    {
+                        Console.WriteLine ( "You dont have suffecient funds \nPlease sell a property " );
+                        if ( SellProperty ( arrayOfPlayers [ turn ] ) == false )
+                        {
+                            arrayOfPlayers [ turn ].IsKickedOut = true;
+                            Console.WriteLine ( "You dont have any propertie to sell \nYou have been kicked out of the game" );
+                        }
+
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine ( "You own this cell" );
 
                 }
 
@@ -232,12 +251,13 @@ namespace Monopoly
         //give the turn to another player
         public void SwitchTurn ()
         {
-            turn = ( turn + 1 ) % arrayOfPlayers.Length;
+            turn = GetTurn ();
 
-            if ( arrayOfPlayers [ turn ].IsKickedOut != false )
-                PlayGame ();
-            else
+            if ( arrayOfPlayers [ turn ].IsKickedOut == true )
                 SwitchTurn ();
+            else
+                PlayGame ();
+
 
         }
 
@@ -296,8 +316,10 @@ namespace Monopoly
                 changeCellOfOwner.SetOwner ( null );
                 //change the "Available" of the index of the Cell to "True"
                 changeCellOfOwner.SetAvailable ( true );
+                Console.WriteLine ( "You have sold a property and rent was paid" );
 
                 OwenerOfTheCell.Money += 1500;
+                OwenerOfTheCell.PayRentToOwner ();
                 returnValue = true;
             }
             else
@@ -312,15 +334,26 @@ namespace Monopoly
 
         public void Print ()
         {
-
-            String.Format ( "|{0,10}|{1,10}|{2,10}|{3,10}|" , "F" , "G" , "H" , "Y" );            /*
+            //player name, money,properties,current location, isKickedOut,
+            //String.Format ( "|{0,10}|{1,10}|{2,10}|{3,10}|" , "F" , "G" , "H" , "Y" );           
+            /*
             for ( int counter = 0 ; counter < typeOfShirtArray.Length ; counter++ )
             {
                 Console.WriteLine ( "{0,-20}{1,10:N1}" , typeOfShirtArray [ counter ] , priceOfShirtArray [ counter ] );
             }
             */
-        }
+            Console.WriteLine ( "__________________________________________________________________________________________________" );
 
+            Console.WriteLine ( String.Format ( "{0,0}{1,14}{2,20}{3,20}{4,20}{5,20}" , "Name" , "Money" , "CurrentPosition" , "Number of cells" , "Iskickedout" , "Turn Number" ) );
+            Console.WriteLine ( "__________________________________________________________________________________________________" );
+
+            for ( int i = 0 ; i < arrayOfPlayers.Length ; i++ )
+                Console.WriteLine ( String.Format ( "{0,0}{1,10}{2,10}{3,25}{4,20}{5,20}" , arrayOfPlayers [ i ].Name , arrayOfPlayers [ i ].Money , arrayOfPlayers [ i ].Position.GetIndex () , gameBoard.QueryCellIndex ( arrayOfPlayers [ i ] ).Length , arrayOfPlayers [ i ].IsKickedOut , arrayOfPlayers [ i ].TurnNumber ) );
+
+            Console.WriteLine ( "__________________________________________________________________________________________________" );
+            Console.WriteLine ();
+        }
+        //in the order of filo
         //PRINT FUNCTION 
         // 
         //=====================Methods End===========================

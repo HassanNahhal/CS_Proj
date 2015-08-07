@@ -68,14 +68,12 @@ namespace Monopoly
 
         public int [] QueryCellIndex ( Player queryPlayer )
         {
-            Console.WriteLine ( "QueryCellIndex" );
             int [] tempArrary = new int [ NUM_OF_CELL ];
             int [] arraryOfCellsOfPlayer;
             int j = 0;
 
             for ( int i = 0 ; i < NUM_OF_CELL ; i++ )
             {
-                Console.WriteLine ( "first loop" );
 
                 if ( cells.ElementAt ( i ).GetOwner () == queryPlayer )
                 {
@@ -88,7 +86,6 @@ namespace Monopoly
 
             while ( tempArrary [ k ] != 0 )
             {
-                Console.WriteLine ( "second loop" );
                 k++;
                 counter++;
             }
@@ -96,7 +93,6 @@ namespace Monopoly
             arraryOfCellsOfPlayer = new int [ counter ];
             for ( int i = 0 ; i < counter ; i++ )
             {
-                Console.WriteLine ( "third loop" );
                 arraryOfCellsOfPlayer [ i ] = tempArrary [ i ];
             }
             return arraryOfCellsOfPlayer;

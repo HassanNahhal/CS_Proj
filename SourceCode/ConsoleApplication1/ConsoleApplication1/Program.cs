@@ -25,8 +25,11 @@ namespace Monopoly
             //HASSAN TEST HERE
             int numberOfPlayers = 0;
 
-            Console.WriteLine ( "Welcome to MONOPOLY" );
-            Console.WriteLine ( "____________________________________________________" );
+            Console.WriteLine ( "                 Welcome to MONOPOLY" );
+            Console.WriteLine ( "______________________________________________________" );
+
+            Console.WriteLine ( "               **** Game Started ****" );
+            Console.WriteLine ();
 
             Console.Write ( "please enter the number of players to start the game : " );
             numberOfPlayers = int.Parse ( Console.ReadLine () );
@@ -38,18 +41,15 @@ namespace Monopoly
 
             for ( int i = 0 ; i < numberOfPlayers ; i++ )
             {
-                arrayOfPlayers [ i ] = new Player (5000,"Player "+(i+1));
+                arrayOfPlayers [ i ] = new Player ( 5000 , "Player" + ( i + 1 ) );
             }
 
             //creating gameMaster
             GameMaster gameMaster = new GameMaster ( die , gameBoard , arrayOfPlayers );
 
-            Console.WriteLine ( "NumberOfPlayers :" + gameMaster.ArrayOfPlayers.Length );
-
             Console.WriteLine ();
 
-            Console.WriteLine ( "**** Game Started ****" );
-            Console.WriteLine ();
+
 
             gameMaster.PlayGame ();
             //ask the user if he want to buy a cell

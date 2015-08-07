@@ -15,7 +15,7 @@ namespace Monopoly
         private int money;
         private string name;
         private Cell position;
-        private bool isKickedOut = false;
+        private bool isKickedOut;
         private int turnNumber;
 
         public Player ()
@@ -23,7 +23,6 @@ namespace Monopoly
             money = 0;
             name = "";
             position = new Cell ();
-            isKickedOut = false;
             turnNumber = 0;
         }
 
@@ -32,7 +31,6 @@ namespace Monopoly
             money = _money;
             name = _name;
             position = new Cell ();
-            isKickedOut = false;
             turnNumber = 0;
         }
 
@@ -42,7 +40,6 @@ namespace Monopoly
             {
                 return isKickedOut;
             }
-
             set
             {
                 isKickedOut = value;
@@ -105,6 +102,7 @@ namespace Monopoly
         //Todo return true or false based on subtraction of price
         public bool BuyProperty ()
         {
+            bool flag = false;
             try
             {
                 if ( money - position.GetPrice () >= 0 )
@@ -112,11 +110,11 @@ namespace Monopoly
                     money = money - position.GetPrice ();
 
                     position.SetOwner ( this );
-                    return true;
+                    flag = true;
                 }
                 else
                 {
-                    return false;
+                    flag = false;
                 }
 
             }
@@ -124,7 +122,7 @@ namespace Monopoly
             {
                 Console.WriteLine ( e );
             }
-            return false;
+            return flag;
         }
 
         public bool PayRentTo ()
@@ -133,25 +131,22 @@ namespace Monopoly
             try
             {
                 //Todo If owner is me then nothing
-                if ( this != position.GetOwner () )
+
+                //current player has more money that the player has to pay for rent
+                if ( money - position.GetRentPrice () >= 0 )
                 {
-                    //current player has more money that the player has to pay for rent
-                    if ( money - position.GetRentPrice () >= 0 )
-                    {
-                        //deduct the money of player by rent fee for the owner
-                        money = money - position.GetRentPrice ();
+                    //deduct the money of player by rent fee for the owner
+                    money = money - position.GetRentPrice ();
 
-                        //transfer the money for Rent to the owner
-                        PayRentToOwner ();
-                        flag = true;
-                    }
-
-                    else
-                    {
-                        flag = false;
-                    }
+                    //transfer the money for Rent to the owner
+                    PayRentToOwner ();
+                    flag = true;
                 }
 
+                else
+                {
+                    flag = false;
+                }
 
             }
             catch ( Exception e )
