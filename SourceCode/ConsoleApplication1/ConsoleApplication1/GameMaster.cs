@@ -1,17 +1,15 @@
-﻿/*
- * 
- * 
- * Done by : Hassan Nahhal
- *           7192602
- * 
- * 
- */
+﻿/* GameMaster.cs
+ * Final Project
+ * Revision History 
+ * Hassan Nahhal, 2015.07.28: Created 
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Monopoly
 {
@@ -22,6 +20,7 @@ namespace Monopoly
         private Player [] arrayOfPlayers;
         static private int turn;
         private int utilDiceRoll;
+        private int iterationNum = 0;
 
         //=====================Constructors===========================
         public GameMaster ()
@@ -104,7 +103,7 @@ namespace Monopoly
         //get the possision of  player
         public Cell GetPosition ( Player player )
         {
-            Cell position = new Cell ();
+            Cell position;
             position = player.GetPosition ();
 
             return position;
@@ -124,7 +123,7 @@ namespace Monopoly
         {
             Player player = GetCurrentPlayer ();
             Cell cell = player.GetPosition ();
-            int index = cell.GetIndex ();
+            int index = cell.Index;
             return index;
         }
 
@@ -163,115 +162,65 @@ namespace Monopoly
             Die die = new Die ();
             diceRollSum = die.DieRoll ();
 
+            //Test ONLY~~~~~~~~~
+            Console.Write("=====TEST Die Number: ");
+            diceRollSum = int.Parse(Console.ReadLine());
+            //~~~~~~~~~~~~~~~~~~
             return diceRollSum;
         }
 
         public void PlayGame ()
         {
+            int numRemainedPlayer = arrayOfPlayers.Length;
 
-            Print ();
-
-            Console.WriteLine ( "Player " + ( turn + 1 ) + " will play now " );
-            Console.WriteLine ();
-            Console.WriteLine ( "Player " + ( turn + 1 ) + " will roll the die " );
-            Console.WriteLine ();
-
-            utilDiceRoll = GetUtilDiceRoll ();
-            Console.WriteLine ();
-
-            Console.WriteLine ( "Player " + ( turn + 1 ) + " will move " + utilDiceRoll + " cells" );
-            Console.WriteLine ( "Player " + ( turn + 1 ) + " is at cell # " + MovePlayer ( arrayOfPlayers [ turn ] , utilDiceRoll ).GetIndex () + " now" );
-            Console.WriteLine ();
-
-
-            if ( arrayOfPlayers [ turn ].CheckProperty () == true )
+            do
             {
-
-                string answer;
-                Console.WriteLine ( "This cell is available" );
-                Console.WriteLine ( "Do you want to buy this cell? \ny/n" );
-                answer = Console.ReadLine ();
-
-                if ( answer == "y" || answer == "Y" )
+                Print (true);
+                if ((arrayOfPlayers[turn].IsKickedOut == false) && (!arrayOfPlayers[turn].Position.CellName.ToLower().Contains("jail")))
                 {
-                    if ( arrayOfPlayers [ turn ].Money >= 2000 )
+                    Console.WriteLine();
+                    Console.WriteLine("Player " + (turn + 1) + " will play now ");
+                    Console.WriteLine("Player " + (turn + 1) + " will roll the die ");
+                    utilDiceRoll = GetUtilDiceRoll();
+
+                    //Use Polymorephism : It will launch landed on with respect to cell kind.
+                    MovePlayer(arrayOfPlayers[turn], utilDiceRoll).LandedOn(arrayOfPlayers[turn]);
+                    if (arrayOfPlayers[turn].IsKickedOut == true)
                     {
-                        if ( arrayOfPlayers [ turn ].BuyProperty () == true )
-                        {
-                            Console.WriteLine ( "Congratulation , you own this cell now" );
-                        }
+                        arrayOfPlayers[turn].TurnNumber = iterationNum;
                     }
-                    else
-                    {
-                        Console.WriteLine ( "Unfortunaetly you don't have enough money to buy it " );
-                    }
+                    Console.WriteLine();
 
                 }
-
-                else
+                else if (arrayOfPlayers[turn].Position.CellName.ToLower().Contains("jail"))
                 {
-                    Console.WriteLine ( arrayOfPlayers [ turn ] + " Didnt buy this cell" );
+                    Console.WriteLine("Player " + (turn + 1) + " Skipped this turn, and start at next cell!!");
+                    MovePlayer(arrayOfPlayers[turn], 1);   //To Make Simple for Jail, Just move player 1 position
                 }
+                GetTurn();
+                iterationNum++;
+                Console.WriteLine("\n\n\nEnter anykey to continue...");
+                Console.ReadKey();
+            } while (numRemainedPlayer > 1);
 
-            }
-
-            else
-            {
-                if ( arrayOfPlayers [ turn ].Position.GetOwner () != arrayOfPlayers [ turn ] )
-                {
-                    Console.WriteLine ( "Unfortunaetly you are in someone's properties \nYou have you pay rent for him" );
-                    if ( arrayOfPlayers [ turn ].PayRentTo () == true )
-                    {
-                        Console.WriteLine ( "You have paid rent for " + arrayOfPlayers [ turn ].Position.GetOwner ().Name );
-                    }
-
-                    else
-                    {
-                        Console.WriteLine ( "You dont have suffecient funds \nPlease sell a property " );
-                        if ( SellProperty ( arrayOfPlayers [ turn ] ) == false )
-                        {
-                            arrayOfPlayers [ turn ].IsKickedOut = true;
-                            Console.WriteLine ( "You dont have any propertie to sell \nYou have been kicked out of the game" );
-                        }
-
-                    }
-                }
-
-                else
-                {
-                    Console.WriteLine ( "You own this cell" );
-
-                }
-
-            }
-            SwitchTurn ();
-        }
-
-
-        //give the turn to another player
-        public void SwitchTurn ()
-        {
-            turn = GetTurn ();
-
-            if ( arrayOfPlayers [ turn ].IsKickedOut == true )
-                SwitchTurn ();
-            else
-                PlayGame ();
-
-
+            EndGame();
         }
 
         public void EndGame ()
         {
-            Console.WriteLine ( "enter anykey to continue..." );
+            Console.Clear();
+            Console.WriteLine("Final Result is");
+            Print(false);
+            Console.WriteLine("Thank you...");
+            Console.WriteLine("Enter anykey to continue..." );
             Console.ReadKey ();
         }
-
 
         //Done By Joe
         //Set the current position of the Player into the Cell object via GameBoard Object
         public Cell MovePlayer ( Player curPlayer , int distance )
         {
+            const int TURN_BONUS = 1000;
             bool isTurn;
             //Player cannot get the number of RollDie, hence cannot pass the distance
             //Game Master has to pass the number of RollDie(int distance)
@@ -280,60 +229,18 @@ namespace Monopoly
             curPlayer.Position = gameBoard.MoveToAnotherCell ( curPlayer.GetPosition () , distance , out isTurn );
             if ( isTurn == true )
             {
-                curPlayer.Money += 1000;
-                curPlayer.TurnNumber++;
+                Console.WriteLine("Congratulation on finishing turn! Bonus $" + TURN_BONUS + " will be given");
+                curPlayer.Money += TURN_BONUS;
             }
             return curPlayer.Position;
         }
 
-        //Done By Joe
-        public bool SellProperty ( Player OwenerOfTheCell )
+        public void Print (bool clearScreen)
         {
-            bool returnValue = false;
-            int [] indexOfOwnerOfCell = gameBoard.QueryCellIndex ( arrayOfPlayers [ turn ] );
-            string selectedIndex = "";
-
-            //input value of the index of the Cell that Player decide to sell
-            if ( indexOfOwnerOfCell.Length > 0 )
+            if (clearScreen == true)
             {
-                Console.WriteLine ( "Please choose the property that you want to sell" );
-
-                for ( int i = 0 ; i < indexOfOwnerOfCell.Length ; i++ )
-                {
-                    Console.Write ( indexOfOwnerOfCell [ i ] + " " );
-                }
-
-                //input value of the index of the Cell that Player decide to sell
-
-                selectedIndex = Console.ReadLine ();
-
-                //Set the current cell available = true After selling the property
-                //need to pass the parameter the index of cell which will
-
-                //Get the Cell which the player decided to sell the index of Cell
-                Cell changeCellOfOwner = gameBoard.GetCell ( int.Parse ( selectedIndex ) );
-                //change the Owner of the index of the Cell to "null"
-                changeCellOfOwner.SetOwner ( null );
-                //change the "Available" of the index of the Cell to "True"
-                changeCellOfOwner.SetAvailable ( true );
-                Console.WriteLine ( "You have sold a property and rent was paid" );
-
-                OwenerOfTheCell.Money += 1500;
-                OwenerOfTheCell.PayRentToOwner ();
-                returnValue = true;
+                Console.Clear();
             }
-            else
-            {
-                Console.WriteLine ( "There is no property of the current player" );
-
-                returnValue = false;
-            }
-
-            return returnValue;
-        }
-
-        public void Print ()
-        {
             //player name, money,properties,current location, isKickedOut,
             //String.Format ( "|{0,10}|{1,10}|{2,10}|{3,10}|" , "F" , "G" , "H" , "Y" );           
             /*
@@ -342,14 +249,22 @@ namespace Monopoly
                 Console.WriteLine ( "{0,-20}{1,10:N1}" , typeOfShirtArray [ counter ] , priceOfShirtArray [ counter ] );
             }
             */
+            Console.WriteLine("Interation# : {0}", this.iterationNum);
             Console.WriteLine ( "__________________________________________________________________________________________________" );
 
             Console.WriteLine ( String.Format ( "{0,0}{1,14}{2,20}{3,20}{4,20}{5,20}" , "Name" , "Money" , "CurrentPosition" , "Number of cells" , "Iskickedout" , "Turn Number" ) );
             Console.WriteLine ( "__________________________________________________________________________________________________" );
 
-            for ( int i = 0 ; i < arrayOfPlayers.Length ; i++ )
-                Console.WriteLine ( String.Format ( "{0,0}{1,10}{2,10}{3,25}{4,20}{5,20}" , arrayOfPlayers [ i ].Name , arrayOfPlayers [ i ].Money , arrayOfPlayers [ i ].Position.GetIndex () , gameBoard.QueryCellIndex ( arrayOfPlayers [ i ] ).Length , arrayOfPlayers [ i ].IsKickedOut , arrayOfPlayers [ i ].TurnNumber ) );
+            for (int i = 0; i < arrayOfPlayers.Length; i++)
+            {
+                Debug.WriteLine("Name:"+arrayOfPlayers[i].Name);
+                Debug.WriteLine("Money:" + arrayOfPlayers[i].Money);
+                Debug.WriteLine("Position.Index:" + arrayOfPlayers[i].Position.Index);
+                Debug.WriteLine("getPropertyNumber:" + arrayOfPlayers[i].getPropertyNumber());
+                Debug.WriteLine("IsKickedOut:" + arrayOfPlayers[i].IsKickedOut);
 
+                Console.WriteLine(String.Format("{0,0}{1,10}{2,10}{3,25}{4,20}{5,20}", arrayOfPlayers[i].Name, arrayOfPlayers[i].Money, arrayOfPlayers[i].Position.Index, arrayOfPlayers[i].getPropertyNumber(), arrayOfPlayers[i].IsKickedOut, arrayOfPlayers[i].TurnNumber));
+            }
             Console.WriteLine ( "__________________________________________________________________________________________________" );
             Console.WriteLine ();
         }
@@ -357,7 +272,6 @@ namespace Monopoly
         //PRINT FUNCTION 
         // 
         //=====================Methods End===========================
-
 
 
     }

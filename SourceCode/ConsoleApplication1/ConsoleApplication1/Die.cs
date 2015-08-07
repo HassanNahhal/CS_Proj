@@ -1,7 +1,8 @@
-﻿/*
- * 
- * Done by SUNG JOE KIM
- */
+﻿/* Die.cs
+ * Final Project
+ * Revision History 
+ * Sungjoe Kim, 2015.07.28: Created 
+*/
 
 using System;
 using System.Collections.Generic;
@@ -31,15 +32,13 @@ namespace Monopoly
         //into the local dicdeFaceValue variable
         public int DieRoll()
         {
+            Console.WriteLine("Dice are rolled !!!");
 
-            Console.WriteLine ( "The first Die is being rolled" );
             dieFirstFaceValue = random.Next(minNumber,maxNumber);
-            Console.WriteLine ( "The first Die = " + dieFirstFaceValue );
-            Console.WriteLine ();
+            Console.Write( "1st Die = " + dieFirstFaceValue );
 
-            Console.WriteLine ( "The second Die is being rolled" );
             dieSecondFaceValue = random.Next ( minNumber , maxNumber );
-            Console.WriteLine ( "The second Die = " + dieSecondFaceValue );
+            Console.WriteLine ( "  2ndDie = " + dieSecondFaceValue );
 
             return dieFirstFaceValue + dieSecondFaceValue;
 

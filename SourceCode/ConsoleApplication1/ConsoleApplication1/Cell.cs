@@ -2,85 +2,79 @@
  * Final Project
  * Revision History 
  * Changho Choi, 2015.07.28: Created 
+ * Changho Choi, 2005.08.05: Modifed add characteristics of square
 */
-
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Monopoly
 {
-    public class Cell
+    public abstract class Cell
     {
-        Boolean available;
+        int index; 
         String cellName;
-        int index;
-        int cellPrice;
-        int rentPrice;
-        Player owner;
 
-        public Cell(int index, String cellName, int cellPrice, int rentPrice)
+        protected Cell()
+        {
+        }
+
+        protected Cell(int index, String cellName)
         {
             this.index = index;
-            available = true;
-            owner = null;
             this.cellName = cellName;
-            this.cellPrice = cellPrice;
-            this.rentPrice = rentPrice;
         }
 
-        public Cell()
+        public abstract void LandedOn(Player curPlayer);
+
+        public int Index 
         {
+            get 
+            {
+                return this.index;
+            }
+        }
+        public String CellName
+        {
+            get
+            {
+                return this.cellName;
+            }
         }
 
-        public int GetPrice()
+        public virtual int GetPrice()
         {
-            return this.cellPrice;
-        }
-        
-        public int GetRentPrice()
-        {
-            return this.rentPrice;
+            throw new System.InvalidOperationException("Invalid!!! Get Price()");
         }
 
-        public Boolean IsAvailable()
+        public virtual int GetRentPrice()
         {
-            return available;
+            throw new System.InvalidOperationException("Invalid!!! Get GetRentPrice()");
         }
 
-        public void SetAvailable(Boolean available)
+        public virtual Boolean IsAvailable()
         {
-            this.available = available;
-        }
-        
-        public String GetName()
-        {
-           return  this.cellName;
+            throw new System.InvalidOperationException("Invalid!!! Get IsAvailable()");
         }
 
-
-        public void SetName(String cellName)
+        public virtual void SetAvailable(Boolean available)
         {
-             this.cellName = cellName;
+            throw new System.InvalidOperationException("Invalid!!! Get SetAvailable()");
         }
 
-        public Player GetOwner()
+        public virtual Player GetOwner()
         {
-            return this.owner;
+            throw new System.InvalidOperationException("Invalid!!! Get GetOwner()");
         }
 
-        public void SetOwner(Player owner)
+        public virtual void SetOwner(Player owner)
         {
-            this.owner = owner;
-            this.SetAvailable(false);
+            throw new System.InvalidOperationException("Invalid!!! SetOwner()");
         }
 
-        public int GetIndex()
-        {
-            return this.index;
-        }
     }
 }

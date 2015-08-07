@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Program.cs
+ * Final Project
+ * Revision History 
+ * Hassan Nahhal, 2015.07.28: Created 
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,17 +36,23 @@ namespace Monopoly
             Console.WriteLine ( "               **** Game Started ****" );
             Console.WriteLine ();
 
-            Console.Write ( "please enter the number of players to start the game : " );
-            numberOfPlayers = int.Parse ( Console.ReadLine () );
+            Console.Write ( "Please enter the number of players to start the game : " );
+            while (!((int.TryParse(Console.ReadLine(), out numberOfPlayers)) && 
+                    ((numberOfPlayers >= 2) && (numberOfPlayers<=8)) ))
+            {
+                Console.WriteLine("Player should between 2 and 8 !");
+            }
 
             //creating the array of players,die array and the gameBoard that contains 40 cell
             Player [] arrayOfPlayers = new Player [ numberOfPlayers ];
             Die [] die = new Die [ 2 ];
             GameBoard gameBoard = new GameBoard ();
 
+
             for ( int i = 0 ; i < numberOfPlayers ; i++ )
             {
                 arrayOfPlayers [ i ] = new Player ( 5000 , "Player" + ( i + 1 ) );
+                arrayOfPlayers[i].Position = gameBoard.GetCell(0);
             }
 
             //creating gameMaster
@@ -49,13 +60,7 @@ namespace Monopoly
 
             Console.WriteLine ();
 
-
-
             gameMaster.PlayGame ();
-            //ask the user if he want to buy a cell
-
-            Console.WriteLine ( "enter anykey to continue..." );
-            Console.ReadKey ();
         }
         static public void MainJoe ()
         {
