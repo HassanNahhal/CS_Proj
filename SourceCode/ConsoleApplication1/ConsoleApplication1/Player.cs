@@ -25,14 +25,14 @@ namespace Monopoly
         {
             money = 0;
             name = "";
-            turnNumber = 0;
+            turnNumber = 1;
         }
 
         public Player ( int _money , string _name )
         {
             money = _money;
             name = _name;
-            turnNumber = 0;
+            turnNumber = 1;
         }
 
         public bool IsKickedOut
