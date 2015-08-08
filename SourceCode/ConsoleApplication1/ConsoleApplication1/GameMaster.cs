@@ -20,7 +20,7 @@ namespace Monopoly
         private Player [] arrayOfPlayers;
         static private int turn;
         private int utilDiceRoll;
-        private int iterationNum = 0;
+        private int iterationNum = 1;
 
         //=====================Constructors===========================
         public GameMaster ()
@@ -161,11 +161,6 @@ namespace Monopoly
             int diceRollSum = 0;
             Die die = new Die ();
             diceRollSum = die.DieRoll ();
-
-            //Test ONLY~~~~~~~~~
-            Console.Write("=====TEST Die Number: ");
-            diceRollSum = int.Parse(Console.ReadLine());
-            //~~~~~~~~~~~~~~~~~~
             return diceRollSum;
         }
 
@@ -188,6 +183,7 @@ namespace Monopoly
                     if (arrayOfPlayers[turn].IsKickedOut == true)
                     {
                         arrayOfPlayers[turn].TurnNumber = iterationNum;
+                        numRemainedPlayer--;
                     }
                     Console.WriteLine();
 
