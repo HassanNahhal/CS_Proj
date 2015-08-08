@@ -144,6 +144,15 @@ namespace Monopoly
             }
             return flag;
         }
+        
+        public void SellAllProperty()
+        {
+            for (int i = 0; i < myPropertyList.Count; i++)
+            {
+                myPropertyList.ElementAt(i).SetOwner(null);
+                myPropertyList.ElementAt(i).SetAvailable(true);
+            }
+        }
 
         //Done By Joe
         public bool SellProperty()

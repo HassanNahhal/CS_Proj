@@ -182,6 +182,7 @@ namespace Monopoly
                     MovePlayer(arrayOfPlayers[turn], utilDiceRoll).LandedOn(arrayOfPlayers[turn]);
                     if (arrayOfPlayers[turn].IsKickedOut == true)
                     {
+                        arrayOfPlayers[turn].SellAllProperty();
                         arrayOfPlayers[turn].TurnNumber = iterationNum;
                         numRemainedPlayer--;
                     }
