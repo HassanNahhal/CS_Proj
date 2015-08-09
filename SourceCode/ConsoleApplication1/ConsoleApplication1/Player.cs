@@ -223,7 +223,6 @@ namespace Monopoly
                     PayRentToOwner ();
                     flag = true;
                 }
-
                 else
                 {
                     flag = false;

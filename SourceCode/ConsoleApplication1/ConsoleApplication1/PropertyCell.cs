@@ -106,34 +106,23 @@ namespace Monopoly
                 Console.WriteLine("Unfortunaetly you are in someone's properties. You have to pay rent for him");
                 if (curPlayer.PayRentTo() == true)
                 {
-                    Console.WriteLine("Rent fee $" + this.rentPrice + " have been paid ");
+                    Console.WriteLine("Rent fee $" + this.rentPrice + " have been paid to " + this.owner.Name);
                 }
                 else
                 {
                     Console.WriteLine("You dont have suffecient funds!");
-                    if (SellProperty(curPlayer) == false)
+                    if ((curPlayer.SellProperty() == false) || (curPlayer.PayRentTo() == false))
                     {
                         curPlayer.IsKickedOut = true;
                         Console.WriteLine("You dont have any propertie to sell \nYou have been kicked out of the game");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Rent fee $" + this.rentPrice + " have been paid to " + this.owner.Name);
                     }
                 }
             }
 
         } //public override void LandedOn(Player curPlayer)
-
-        private Boolean SellProperty(Player curPlayer)
-        {
-            if (curPlayer.SellProperty() == true)
-            {
-                Debug.WriteLine("curPlayer.SellProperty() == true");
-
-                if (this.owner.PayRentTo() == true)
-                {
-                    return true;
-                }
-            }
-            Debug.WriteLine("curPlayer.SellProperty() == false this.owner.PayRentToOwner() false");
-            return false;
-        }
     } // class PropertyCell : Cell
 } //namespace Monopoly
