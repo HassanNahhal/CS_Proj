@@ -101,7 +101,7 @@ namespace Monopoly
                 }
               
             }
-            else
+            else if (this.owner != curPlayer)
             {
                 Console.WriteLine("Unfortunaetly you are in someone's properties. You have to pay rent for him");
                 if (curPlayer.PayRentTo() == true)
