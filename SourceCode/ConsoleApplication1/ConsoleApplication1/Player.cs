@@ -242,11 +242,10 @@ namespace Monopoly
         public void PayRentToOwner ()
         {
             //transfer the money for Rent to the owner
-            int rentPrice = position.GetRentPrice ();
-            int moneyOfOwner = position.GetOwner ().Money;
+            int rentPrice = position.GetRentPrice();
+            int moneyOfOwner = position.GetOwner().Money;
             moneyOfOwner += rentPrice;
-            position.GetOwner ().Money = moneyOfOwner;
-
+            position.GetOwner().Money = moneyOfOwner;
         }
 
         //What is different from between available and owner?

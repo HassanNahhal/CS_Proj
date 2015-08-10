@@ -176,8 +176,54 @@ namespace Monopoly
                     Console.WriteLine();
                     Console.WriteLine("Player " + (turn + 1) + " will play now ");
                     Console.WriteLine("Player " + (turn + 1) + " will roll the die ");
+                   
                     utilDiceRoll = GetUtilDiceRoll();
 
+                    //Use Polymorephism : It will launch landed on with respect to cell kind.
+                    MovePlayer(arrayOfPlayers[turn], utilDiceRoll).LandedOn(arrayOfPlayers[turn]);
+                    if (arrayOfPlayers[turn].IsKickedOut == true)
+                    {
+                        arrayOfPlayers[turn].SellAllProperty();
+                        arrayOfPlayers[turn].TurnNumber = iterationNum;
+                        numRemainedPlayer--;
+                    }
+                    Console.WriteLine();
+
+                }
+                else if (arrayOfPlayers[turn].Position.CellName.ToLower().Contains("jail"))
+                {
+                    Console.WriteLine("Player " + (turn + 1) + " Skipped this turn, and start at next cell!!");
+                    MovePlayer(arrayOfPlayers[turn], 1);   //To Make Simple for Jail, Just move player 1 position
+                }
+                GetTurn();
+                iterationNum++;
+                Console.WriteLine("\n\n\nEnter anykey to continue...");
+                Console.ReadKey();
+            } while (numRemainedPlayer > 1);
+
+            EndGame();
+        }
+
+        /// This method is to test functionality of system
+        public void PlayGame(string testmode)
+        {
+            int numRemainedPlayer = arrayOfPlayers.Length;
+
+            do
+            {
+                Print(true);
+                if ((arrayOfPlayers[turn].IsKickedOut == false) && (!arrayOfPlayers[turn].Position.CellName.ToLower().Contains("jail")))
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Player " + (turn + 1) + " will play now ");
+                    Console.WriteLine("Player " + (turn + 1) + " will roll the die ");
+
+                    do
+                    {
+                        Console.Write("Enter Dice Number: ");
+
+                    } while(!((int.TryParse(Console.ReadLine(), out utilDiceRoll)) && (utilDiceRoll < 40))); 
+                     
                     //Use Polymorephism : It will launch landed on with respect to cell kind.
                     MovePlayer(arrayOfPlayers[turn], utilDiceRoll).LandedOn(arrayOfPlayers[turn]);
                     if (arrayOfPlayers[turn].IsKickedOut == true)

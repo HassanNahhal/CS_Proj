@@ -30,7 +30,6 @@ namespace Monopoly
             Console.WriteLine(curPlayer.Name + " arrived at " + this.CellName);
             Debug.WriteLine(curPlayer.Name + "Player Landed on Lot Cell");
             //Do Nothing
-            curPlayer.Money++;
         }
     }
     
